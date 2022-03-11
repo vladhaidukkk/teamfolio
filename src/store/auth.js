@@ -1,13 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { authService, localStorageService } from '../services';
+import { authService, localStorageService, usersService } from '../services';
+import { UserStatusConstants } from '../utils/constants';
+import { history } from '../utils/core';
 
-const accountId = localStorageService.getUserId();
+const account = localStorageService.getAccountData();
 
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    accountId: accountId || null,
-    isLoggedIn: !!accountId || false,
+    account: account || null,
+    isLoggedIn: !!account,
     error: null,
   },
   reducers: {
@@ -15,11 +17,11 @@ const authSlice = createSlice({
       state.error = null;
     },
     successed: (state, action) => {
-      state.accountId = action.payload;
+      state.account = action.payload;
       state.isLoggedIn = true;
     },
     loggedOut: (state) => {
-      state.accountId = null;
+      state.account = null;
       state.isLoggedIn = false;
     },
     failed: (state, action) => {
@@ -31,14 +33,22 @@ const authSlice = createSlice({
 const { requested, successed, loggedOut, failed } = authSlice.actions;
 
 export const signUp =
-  ({ email, password }) =>
+  ({ email, password, ...restData }) =>
   async (dispatch) => {
     dispatch(requested());
     try {
       const authData = await authService.signUp({ email, password });
+      const accountData = await usersService.createUser(authData.localId, {
+        id: authData.localId,
+        email,
+        ...restData,
+        status: UserStatusConstants.Guest,
+        registeredAt: Date.now(),
+      });
       localStorageService.setTokens(authData);
-      dispatch(successed(authData.localId));
-      // todo: create user to realtime db
+      localStorageService.setAccountData(accountData);
+      dispatch(successed(accountData));
+      history.push('/');
     } catch (error) {
       const { message } = error;
       dispatch(failed(message));
@@ -46,14 +56,16 @@ export const signUp =
   };
 
 export const logIn =
-  ({ email, password }) =>
+  ({ email, password }, redirect) =>
   async (dispatch) => {
     dispatch(requested());
     try {
       const authData = await authService.logIn({ email, password });
+      const accountData = await usersService.getUser(authData.localId);
       localStorageService.setTokens(authData);
-      dispatch(successed(authData.localId));
-      // todo: history.push
+      localStorageService.setAccountData(accountData);
+      dispatch(successed(accountData));
+      history.push(redirect);
     } catch (error) {
       const { message } = error;
       dispatch(failed(message));
@@ -62,7 +74,17 @@ export const logIn =
 
 export const logOut = () => (dispatch) => {
   localStorageService.removeTokens();
+  localStorageService.removeAccountData();
   dispatch(loggedOut());
+  history.push('/');
+};
+
+export const getAccountData = () => (state) => {
+  return state.auth.account;
+};
+
+export const getLoggedInStatus = () => (state) => {
+  return state.auth.isLoggedIn;
 };
 
 const authReducer = authSlice.reducer;

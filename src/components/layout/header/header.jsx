@@ -12,8 +12,14 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu';
 import Logo from '../../common/logo';
+import { NavLink } from 'react-router-dom';
 
-const pages = ['Home', 'Members', 'Candidates', 'Favourites'];
+const pages = [
+  { label: 'Home', path: '/' },
+  { label: 'Members', path: '/members' },
+  { label: 'Candidates', path: '/candidates' },
+  { label: 'Favourites', path: '/favourites' },
+];
 const settings = ['Login', 'Registration'];
 
 const Header = () => {
@@ -78,8 +84,10 @@ const Header = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page.label} onClick={handleCloseNavMenu}>
+                  <NavLink to={page.path}>
+                    <Typography textAlign="center">{page.label}</Typography>
+                  </NavLink>
                 </MenuItem>
               ))}
             </Menu>
@@ -95,11 +103,11 @@ const Header = () => {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.label}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                {page.label}
               </Button>
             ))}
           </Box>

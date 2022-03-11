@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Button } from '@mui/material';
 import { logIn } from '../../store/auth';
 
 const Login = () => {
-  // const history = useHistory();
+  const history = useHistory();
   const dispatch = useDispatch();
   const [data, setData] = useState({ email: '', password: '' });
   // const [errors, setErrors] = useState({});
@@ -48,10 +48,10 @@ const Login = () => {
     event.preventDefault();
     // validate().then((isValid) => {
     //   if (!isValid) return;
-    // const redirect = history.location.state?.from.pathname
-    //   ? history.location.state.from.pathname
-    //   : '/';
-    dispatch(logIn(data));
+    const redirect = history.location.state?.from.pathname
+      ? history.location.state.from.pathname
+      : '/';
+    dispatch(logIn(data, redirect));
     // });
   };
 
