@@ -37,14 +37,15 @@ const Registration = () => {
   //   validate();
   // }, [data]);
 
-  const handleChange = (dataItem) => {
+  const handleChange = ({ target }) => {
     setData((prevState) => ({
       ...prevState,
-      [dataItem.name]: dataItem.value,
+      [target.name]: target.value,
     }));
   };
 
   const handleSubmit = (event) => {
+    console.log('submit');
     event.preventDefault();
     // validate().then((isValid) => {
     //   if (!isValid) return;
@@ -61,7 +62,7 @@ const Registration = () => {
       <form onSubmit={handleSubmit}>
         <input type="text" value={data.email} name="email" onChange={handleChange} />
         <input type="password" value={data.password} name="password" onChange={handleChange} />
-        <Button>Sign up</Button>
+        <Button type="submit">Sign up</Button>
       </form>
     </>
   );

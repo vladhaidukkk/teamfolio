@@ -37,11 +37,10 @@ const Login = () => {
   //   validate();
   // }, [data]);
 
-  const handleChange = (event) => {
-    console.log(event);
+  const handleChange = ({ target }) => {
     setData((prevState) => ({
       ...prevState,
-      [event.target.name]: event.target.value,
+      [target.name]: target.value,
     }));
   };
 
@@ -60,9 +59,9 @@ const Login = () => {
     <>
       <h3 className="mb-4">Login</h3>
       <form onSubmit={handleSubmit}>
-        <input type="text" value={data.email} name="email" onChange={() => handleChange} />
+        <input type="text" value={data.email} name="email" onChange={handleChange} />
         <input type="password" value={data.password} name="password" onChange={handleChange} />
-        <Button>Log in</Button>
+        <Button type="submit">Log in</Button>
       </form>
     </>
   );
