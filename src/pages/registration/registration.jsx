@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 // import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Button } from '@mui/material';
-import { signUp } from 'store/auth';
+import { signUp } from '../../store/auth';
 
 const Registration = () => {
   // const history = useHistory();

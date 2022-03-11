@@ -1,3 +1,3 @@
-import AppRouter from 'components/routing/appRouter/appRouter';
+import AppRouter from './appRouter/appRouter';
 
 export { AppRouter };

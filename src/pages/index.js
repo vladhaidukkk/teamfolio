@@ -1,5 +1,6 @@
-import Home from 'pages/home/home';
-import Login from 'pages/login/login';
-import Registration from 'pages/registration/registration';
+import Home from './home/home';
+import Login from './login/login';
+import Registration from './registration/registration';
+import Candidates from './candidates/candidates';
 
-export { Home, Login, Registration };
+export { Home, Login, Registration, Candidates };

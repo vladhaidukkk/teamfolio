@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { authService } from 'services';
-import localStorageService from 'services/localStorage.service';
+import { authService, localStorageService } from '../services';
 
 const accountId = localStorageService.getUserId();
 
