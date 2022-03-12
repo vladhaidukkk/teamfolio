@@ -1,11 +1,9 @@
 import React from 'react';
-import Header from '../../components/layout/header/header';
-import RegistrationForm from '../../components/ui/registrationForm/registrationForm';
+import { RegistrationForm } from '../../components/ui';
 
 const Registration = () => {
   return (
     <>
-      <Header />
       <RegistrationForm />
     </>
   );

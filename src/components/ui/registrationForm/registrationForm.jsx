@@ -1,70 +1,107 @@
-import React, { useState } from 'react';
-// import { useHistory } from 'react-router-dom';
+import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Button } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import { signUp } from '../../../store/auth';
+import FormBox from '../../common/formBox';
+import Form, { DateField, PasswordField, SubmitButton, TextField } from '../../common/form';
+import { Controller, useForm } from 'react-hook-form';
+import Link from '../../common/link';
+import { LocalizationProvider } from '@mui/lab';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
 
 const RegistrationForm = () => {
-  // const history = useHistory();
+  const { handleSubmit, control } = useForm();
   const dispatch = useDispatch();
-  const [data, setData] = useState({ email: '', password: '' });
-  // const [errors, setErrors] = useState({});
 
-  /* Here I use Validation with Yup library */
-  // const validationScheme = yup.object().shape({
-  //   password: yup
-  //     .string()
-  //     .required('Password must be specified')
-  //     .matches(/(?=.*[A-Z])/, 'Password should have at least 1 capital letter')
-  //     .matches(/(?=.*[0-9])/, 'Password should have at least 1 digit')
-  //     .matches(/^\S+$/, "Password shouldn't have any spaces")
-  //     .matches(/(?=.{8,16})/, 'Password length should be more than 8'),
-  //   email: yup.string().required('Email must be specified').email('Email input is invalid'),
-  // });
-
-  // const validate = async () => {
-  //   try {
-  //     await validationScheme.validate(data);
-  //     setErrors({});
-  //     return true;
-  //   } catch (error) {
-  //     setErrors({ [error.path]: error.message });
-  //     return false;
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   validate();
-  // }, [data]);
-
-  const handleChange = ({ target }) => {
-    setData((prevState) => ({
-      ...prevState,
-      [target.name]: target.value,
-    }));
-  };
-
-  const handleSubmit = (event) => {
-    console.log('submit');
-    event.preventDefault();
-    // validate().then((isValid) => {
-    //   if (!isValid) return;
-    // const redirect = history.location.state?.from.pathname
-    //   ? history.location.state.from.pathname
-    //   : '/';
+  const handleFormSubmit = (data) => {
     dispatch(signUp(data));
-    // });
   };
 
   return (
-    <>
-      <h3 className="mb-4">Registration</h3>
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={data.email} name="email" onChange={handleChange} />
-        <input type="password" value={data.password} name="password" onChange={handleChange} />
-        <Button type="submit">Sign up</Button>
-      </form>
-    </>
+    <Container>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <FormBox>
+          <Form title="Registration" onSubmit={handleSubmit(handleFormSubmit)}>
+            <Controller
+              name="email"
+              control={control}
+              defaultValue=""
+              render={({ field: { onChange, value }, fieldState: { error } }) => (
+                <TextField label="Email" value={value} error={error} onChange={onChange} />
+              )}
+              rules={{
+                required: 'Email is required',
+                pattern: {
+                  value: /^\S+@\S+\.\S+$/,
+                  message: "It's not email",
+                },
+              }}
+            />
+            <Controller
+              name="firstName"
+              control={control}
+              defaultValue=""
+              render={({ field: { onChange, value }, fieldState: { error } }) => (
+                <TextField label="First name" value={value} error={error} onChange={onChange} />
+              )}
+              rules={{
+                required: 'First name is required',
+              }}
+            />
+            <Controller
+              name="lastName"
+              control={control}
+              defaultValue=""
+              render={({ field: { onChange, value }, fieldState: { error } }) => (
+                <TextField label="Last name" value={value} error={error} onChange={onChange} />
+              )}
+              rules={{
+                required: 'Last name is required',
+              }}
+            />
+            <Controller
+              name="dateOfBirth"
+              control={control}
+              defaultValue=""
+              render={({ field: { onChange, value }, fieldState: { error } }) => (
+                <DateField label="Date of birth" value={value} error={error} onChange={onChange} />
+              )}
+              rules={{
+                required: 'Date of birth is required',
+              }}
+            />
+            <Controller
+              name="password"
+              control={control}
+              defaultValue=""
+              render={({ field: { onChange, value }, fieldState: { error } }) => (
+                <PasswordField value={value} error={error} onChange={onChange} />
+              )}
+              rules={{
+                required: 'Password is required',
+                minLength: {
+                  value: 8,
+                  message: 'Password should has min 8 symbols',
+                },
+                maxLength: {
+                  value: 20,
+                  message: 'Password should has max 20 symbols',
+                },
+                pattern: {
+                  value: /[0-9]/g,
+                  message: 'Password should contain at least 1 digit',
+                },
+              }}
+            />
+            <SubmitButton>Sing up</SubmitButton>
+            <Typography sx={{ mt: 2 }}>
+              I already have and account:&nbsp;
+              <Link path="/login">Log in</Link>
+            </Typography>
+          </Form>
+        </FormBox>
+      </LocalizationProvider>
+    </Container>
   );
 };
 

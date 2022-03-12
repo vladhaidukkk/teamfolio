@@ -1,11 +1,19 @@
+import { Container } from '@mui/material';
 import React from 'react';
-import Header from '../../components/layout/header/header';
+import { UniversalBreadcrumbs } from '../../components/common';
 
 const Candidates = () => {
   return (
     <>
-      <Header />
-      <div>candidates page</div>
+      <Container>
+        <UniversalBreadcrumbs
+          input={[
+            { name: 'Main', path: '/' },
+            { name: 'Candidates', path: '' },
+          ]}
+        />
+        <div>candidates page</div>
+      </Container>
     </>
   );
 };
