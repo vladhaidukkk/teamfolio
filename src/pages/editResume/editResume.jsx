@@ -1,9 +1,19 @@
+import { Container } from '@mui/material';
 import React from 'react';
+import { UniversalBreadcrumbs } from '../../components/common';
 
 const EditResume = () => {
   return (
     <>
-      <div>EditResume page</div>
+      <Container>
+        <UniversalBreadcrumbs
+          input={[
+            { name: 'Main', path: '/' },
+            { name: 'Edit resume', path: '' },
+          ]}
+        />
+        <div>EditResume page</div>
+      </Container>
     </>
   );
 };
