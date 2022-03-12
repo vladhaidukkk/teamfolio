@@ -1,13 +1,13 @@
 import React from 'react';
 import Header from '../../components/layout/header/header';
 
-const Candidates = () => {
+const Favourites = () => {
   return (
     <>
       <Header />
-      <div>candidates page</div>
+      <div>Favourites page</div>
     </>
   );
 };
 
-export default Candidates;
+export default Favourites;
