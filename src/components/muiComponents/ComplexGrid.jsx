@@ -5,6 +5,7 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
 import PropTypes from 'prop-types';
+import Favorite from './favorite';
 const Img = styled('img')({
   margin: 'auto',
   display: 'block',
@@ -18,8 +19,10 @@ export default function ComplexGrid({ children }) {
       sx={{
         p: 2,
         margin: 'auto',
+        marginBottom: '50px',
         maxWidth: 500,
         flexGrow: 1,
+        boxShadow: 0,
         backgroundColor: (theme) => (theme.palette.mode === 'dark' ? '#1A2027' : '#fff'),
       }}
     >
@@ -33,7 +36,8 @@ export default function ComplexGrid({ children }) {
                 .toString(36)
                 .substring(7)}.svg`}
             />
-          </ButtonBase>
+          </ButtonBase>{' '}
+          <Favorite></Favorite>
         </Grid>
         <Grid item xs={12} sm container>
           <Grid item xs container direction="column" spacing={2}>

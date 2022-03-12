@@ -3,6 +3,10 @@ import AutoGridNoWrap from '../../components/muiComponents/autoGridNoWrap';
 import ComplexGrid from '../../components/muiComponents/ComplexGrid';
 import SimpleContainer from '../../components/muiComponents/simpleContainer';
 import TextRating from '../../components/muiComponents/starRating';
+import Experience from './experiense';
+import PersonalInfo from './personalInfo';
+import Skills from './skills';
+import Social from './social';
 
 const UserPage = () => {
   const rating = [
@@ -19,6 +23,10 @@ const UserPage = () => {
             <TextRating key={val.id} options={val}></TextRating>
           ))}
         </ComplexGrid>
+        <PersonalInfo></PersonalInfo>
+        <Skills></Skills>
+        <Experience></Experience>
+        <Social></Social>
       </SimpleContainer>
     </>
   );

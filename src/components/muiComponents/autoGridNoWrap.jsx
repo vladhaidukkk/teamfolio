@@ -3,7 +3,6 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 const StyledPaper = styled(Paper)(({ theme }) => ({
@@ -24,10 +23,7 @@ export default function AutoGridNoWrap({ message }) {
           p: 2,
         }}
       >
-        <Grid container wrap="nowrap" spacing={2}>
-          <Grid item>
-            <Avatar>W</Avatar>
-          </Grid>
+        <Grid sx={{ paddingLeft: 0 }} container wrap="nowrap" spacing={2}>
           <Grid item xs zeroMinWidth>
             <Typography variant="h5" noWrap>
               {message}
