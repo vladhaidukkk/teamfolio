@@ -1,69 +1,74 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { Container, Typography } from '@mui/material';
+import { useForm, Controller } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { Button } from '@mui/material';
 import { logIn } from '../../../store/auth';
+import Form, { TextField, PasswordField, SubmitButton } from '../../common/form';
+import Link from '../../common/link';
+import FormBox from '../../common/formBox';
 
 const LoginForm = () => {
-  const history = useHistory();
+  const { handleSubmit, control } = useForm();
+  const { location } = useHistory();
   const dispatch = useDispatch();
-  const [data, setData] = useState({ email: '', password: '' });
-  // const [errors, setErrors] = useState({});
 
-  /* Here I use Validation with Yup library */
-  // const validationScheme = yup.object().shape({
-  //   password: yup
-  //     .string()
-  //     .required('Password must be specified')
-  //     .matches(/(?=.*[A-Z])/, 'Password should have at least 1 capital letter')
-  //     .matches(/(?=.*[0-9])/, 'Password should have at least 1 digit')
-  //     .matches(/^\S+$/, "Password shouldn't have any spaces")
-  //     .matches(/(?=.{8,16})/, 'Password length should be more than 8'),
-  //   email: yup.string().required('Email must be specified').email('Email input is invalid'),
-  // });
-
-  // const validate = async () => {
-  //   try {
-  //     await validationScheme.validate(data);
-  //     setErrors({});
-  //     return true;
-  //   } catch (error) {
-  //     setErrors({ [error.path]: error.message });
-  //     return false;
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   validate();
-  // }, [data]);
-
-  const handleChange = ({ target }) => {
-    setData((prevState) => ({
-      ...prevState,
-      [target.name]: target.value,
-    }));
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // validate().then((isValid) => {
-    //   if (!isValid) return;
-    const redirect = history.location.state?.from.pathname
-      ? history.location.state.from.pathname
-      : '/';
+  const handleFormSubmit = (data) => {
+    console.log(data);
+    const redirect = location.state?.from.pathname ? location.state.from.pathname : '/';
     dispatch(logIn(data, redirect));
-    // });
   };
 
   return (
-    <>
-      <h3 className="mb-4">Login</h3>
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={data.email} name="email" onChange={handleChange} />
-        <input type="password" value={data.password} name="password" onChange={handleChange} />
-        <Button type="submit">Log in</Button>
-      </form>
-    </>
+    <Container>
+      <FormBox>
+        <Form title="Login" onSubmit={handleSubmit(handleFormSubmit)}>
+          <Controller
+            name="email"
+            control={control}
+            defaultValue=""
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <TextField label="Email" value={value} error={error} onChange={onChange} />
+            )}
+            rules={{
+              required: 'Email is required',
+              pattern: {
+                value: /^\S+@\S+\.\S+$/,
+                message: "It's not email",
+              },
+            }}
+          />
+          <Controller
+            name="password"
+            control={control}
+            defaultValue=""
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <PasswordField value={value} error={error} onChange={onChange} />
+            )}
+            rules={{
+              required: 'Password is required',
+              minLength: {
+                value: 8,
+                message: 'Password should has min 8 symbols',
+              },
+              maxLength: {
+                value: 20,
+                message: 'Password should has max 20 symbols',
+              },
+              pattern: {
+                value: /[0-9]/g,
+                message: 'Password should contain at least 1 digit',
+              },
+            }}
+          />
+          <SubmitButton>Log in</SubmitButton>
+          <Typography sx={{ mt: 2 }}>
+            I don&prime;t have an account:&nbsp;
+            <Link path="/registration">Sign up</Link>
+          </Typography>
+        </Form>
+      </FormBox>
+    </Container>
   );
 };
 

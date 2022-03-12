@@ -2,6 +2,7 @@ import axios from 'axios';
 import configKeys from '../config.json';
 import localStorageService from './localStorage.service';
 import authService from './auth.service';
+import { toast } from 'material-react-toastify';
 
 const http = axios.create({
   baseURL: configKeys.apiEndpoint,
@@ -42,8 +43,7 @@ http.interceptors.response.use(
       error.response && error.response.status >= 400 && error.response.status < 500;
 
     if (!isExpected) {
-      console.log('unexpected error');
-      // todo: toast unexpected error;
+      toast.error('Something went wrong. Try it latter.');
     }
 
     return Promise.reject(error);
