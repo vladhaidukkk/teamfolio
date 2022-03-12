@@ -14,7 +14,7 @@ const NavBarConstants = {
     ],
     menu: [
       { label: 'Account', path: '/account' },
-      { label: 'Portfolio', path: '/portfolio' },
+      { label: 'Resume', path: '/resume' },
       { label: 'Logout', path: '/logout' },
     ],
   },
@@ -26,7 +26,7 @@ const NavBarConstants = {
     ],
     menu: [
       { label: 'Account', path: '/account' },
-      { label: 'Portfolio', path: '/portfolio' },
+      { label: 'Resume', path: '/resume' },
       { label: 'Logout', path: '/logout' },
     ],
   },
@@ -38,7 +38,7 @@ const NavBarConstants = {
     ],
     menu: [
       { label: 'Account', path: '/account' },
-      { label: 'Portfolio', path: '/portfolio' },
+      { label: 'Resume', path: '/resume' },
       { label: 'Logout', path: '/logout' },
     ],
   },

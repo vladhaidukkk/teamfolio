@@ -85,7 +85,7 @@ const HeaderAppBar = ({ pages, menu }) => {
               <>
                 {currentUserStatus === UserStatusConstants.Guest && (
                   // TODO: replace with custom button
-                  <Button component={Link} to={'/portfolio'} color="inherit">
+                  <Button component={Link} to={'/editresume'} color="inherit">
                     Join our team!
                   </Button>
                 )}
