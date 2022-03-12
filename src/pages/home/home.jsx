@@ -1,9 +1,16 @@
 import React from 'react';
+import { Container, Divider } from '@mui/material';
+import { Intro, MembersListContainer } from '../../components/layout';
 
 const Home = () => {
   return (
     <>
-      <h1>main page</h1>
+      <Container>
+        <Divider />
+        <Intro />
+        <Divider />
+        <MembersListContainer />
+      </Container>
     </>
   );
 };

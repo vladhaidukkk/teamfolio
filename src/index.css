@@ -1,3 +1,5 @@
+@import '~material-react-toastify/dist/ReactToastify.css';
+
 body {
   margin: 0;
 }

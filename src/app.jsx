@@ -2,14 +2,17 @@ import React from 'react';
 import { AppLoader } from './components/hoc';
 import { AppRouter } from './components/routing';
 import { Header } from './components/layout';
-import './index.css';
+import NotificationContainer from './components/ui/notificationContainer';
 
 const App = () => {
   return (
-    <AppLoader>
-      <Header />
-      <AppRouter />
-    </AppLoader>
+    <>
+      <AppLoader>
+        <Header />
+        <AppRouter />
+      </AppLoader>
+      <NotificationContainer />
+    </>
   );
 };
 
