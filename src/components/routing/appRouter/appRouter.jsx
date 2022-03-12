@@ -9,7 +9,7 @@ import {
   Registration,
   Resume,
   Team,
-  User,
+  UserPage,
 } from '../../../pages';
 import Account from '../../../pages/account/account';
 import Favourites from '../../../pages/favoutires/favourites';
@@ -27,7 +27,7 @@ const AppRouter = () => {
         <PrivateRoute path="/resume" exact component={Resume} />
         <PrivateRoute path="/account" exact component={Account} />
         <PrivateRoute path="/editresume" exact component={EditResume} />
-        <Route path="/users/:userId" exact component={User} />
+        <Route path="/users/:userId" exact component={UserPage} />
         <PrivateRoute path="/candidates" exact component={Candidates} />
         <Route path="/" exact component={Home} />
         <Redirect to="/" />

@@ -40,11 +40,15 @@ export const loadUsers = () => async (dispatch) => {
 export const getUsers = () => (state) => {
   return state.users.entities;
 };
-
+export const getCurrentUserId = () => (state) => state.users;
 export const getUsersLoadingStatus = () => (state) => {
   return state.users.isLoading;
 };
-
+export const getUserById = (userId) => (state) => {
+  if (state.users.entities) {
+    return state.users.entities.find((u) => u.id === userId);
+  }
+};
 export const getTeamMembers = () => (state) => {
   return (
     state.users.entities &&

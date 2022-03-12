@@ -13,7 +13,7 @@ const Img = styled('img')({
   maxHeight: '100%',
 });
 
-export default function ComplexGrid({ children }) {
+export default function ComplexGrid({ children, name }) {
   return (
     <Paper
       sx={{
@@ -55,7 +55,7 @@ export default function ComplexGrid({ children }) {
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs>
               <Typography gutterBottom variant="subtitle1" component="div">
-                Name
+                {name}
               </Typography>
               <Typography variant="body2" gutterBottom>
                 I’m a Front End Developer. I have a Passion for Creating Clean, Beautiful,
@@ -73,5 +73,6 @@ export default function ComplexGrid({ children }) {
   );
 }
 ComplexGrid.propTypes = {
+  name: PropTypes.string,
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
 };

@@ -5,10 +5,10 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
-import Avatar from '@mui/material/Avatar';
 import Grid from '@mui/material/Grid';
 import FolderIcon from '@mui/icons-material/Folder';
 import PropTypes from 'prop-types';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 const Demo = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
 }));
@@ -20,9 +20,9 @@ export default function InteractiveList({ data }) {
     return Object.keys(data).map((value) => (
       <ListItem key={value} sx={{ display: 'flex', justifyContent: 'center' }}>
         <ListItemAvatar>
-          <Avatar>
+          <AccountCircleIcon>
             <FolderIcon />
-          </Avatar>
+          </AccountCircleIcon>
         </ListItemAvatar>
         <ListItemText primary={data[value]} secondary={secondary ? 'Secondary text' : null} />
       </ListItem>
