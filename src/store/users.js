@@ -45,6 +45,9 @@ export const getUserById = (id) => (state) => {
   return state.users.entities && state.users.entities.find((user) => user.id === id);
 };
 
+// не знаю что єто воопше такое
+export const getCurrentUserId = () => (state) => state.users;
+
 export const getUsersLoadingStatus = () => (state) => {
   return state.users.isLoading;
 };

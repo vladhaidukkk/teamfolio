@@ -2,14 +2,14 @@ import React from 'react';
 import AutoGridNoWrap from '../../components/muiComponents/autoGridNoWrap';
 import BoxSx from '../../components/muiComponents/box';
 import InteractiveList from '../../components/muiComponents/interactiveList';
-
-const PersonalInfo = () => {
+import PropTypes from 'prop-types';
+const PersonalInfo = ({ years, name, email }) => {
   const data = {
-    name: 'David D. Harper',
-    email: 'dummy@gmail.com',
+    name: name,
+    email: email,
     phone: '+415-347-7562',
     address: 'Table Rock, NE, USA',
-    age: '26 Years Old',
+    age: years + ' years old',
     nationality: 'American',
   };
   return (
@@ -21,5 +21,9 @@ const PersonalInfo = () => {
     </>
   );
 };
-
+PersonalInfo.propTypes = {
+  name: PropTypes.string,
+  years: PropTypes.number,
+  email: PropTypes.string,
+};
 export default PersonalInfo;
