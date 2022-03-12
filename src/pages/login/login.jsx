@@ -1,11 +1,9 @@
 import React from 'react';
-import Header from '../../components/layout/header/header';
-import LoginForm from '../../components/ui/loginForm/loginForm';
+import { LoginForm } from '../../components/ui';
 
 const Login = () => {
   return (
     <>
-      <Header />
       <LoginForm />
     </>
   );

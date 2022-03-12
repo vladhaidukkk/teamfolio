@@ -1,7 +1,5 @@
-import React from 'react';
-
 const Logo = () => {
-  return <h1>Teamfolio</h1>;
+  return 'Teamfolio';
 };
 
 export default Logo;

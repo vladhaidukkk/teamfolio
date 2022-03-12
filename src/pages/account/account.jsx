@@ -2,20 +2,20 @@ import { Container } from '@mui/material';
 import React from 'react';
 import { UniversalBreadcrumbs } from '../../components/common';
 
-const Candidates = () => {
+const Account = () => {
   return (
     <>
       <Container>
         <UniversalBreadcrumbs
           input={[
             { name: 'Main', path: '/' },
-            { name: 'Candidates', path: '' },
+            { name: 'Account', path: '' },
           ]}
         />
-        <div>candidates page</div>
+        <div>Account page</div>
       </Container>
     </>
   );
 };
 
-export default Candidates;
+export default Account;
