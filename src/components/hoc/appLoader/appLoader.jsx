@@ -6,6 +6,7 @@ import { getUsersLoadingStatus, loadUsers } from '../../../store/users';
 const AppLoader = ({ children }) => {
   const dispatch = useDispatch();
   const usersIsLoading = useSelector(getUsersLoadingStatus());
+
   useEffect(() => {
     dispatch(loadUsers());
   }, []);
