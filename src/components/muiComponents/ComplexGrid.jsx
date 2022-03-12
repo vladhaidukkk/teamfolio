@@ -28,8 +28,20 @@ export default function ComplexGrid({ children }) {
     >
       {children && children[0]}
       <Grid container spacing={2}>
-        <Grid item>
-          <ButtonBase sx={{ width: 128, height: 128 }}>
+        <Grid
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-around',
+          }}
+          item
+        >
+          <ButtonBase
+            sx={{
+              width: 128,
+              height: 128,
+            }}
+          >
             <Img
               alt="complex"
               src={`https://avatars.dicebear.com/api/avataaars/${(Math.random() + 1)
