@@ -3,8 +3,25 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
 import IntroUserCard from '../../ui/cards/introUserCard';
+import { useState } from 'react';
 
 const MembersListContainer = () => {
+  const [users, setUsers] = useState();
+
+  const handleToggleBookMark = (id) => {
+    setUsers(
+      users.map((user) => {
+        if (user._id === id) {
+          return {
+            ...user,
+            bookmark: !user.bookmark,
+          };
+        }
+        return user;
+      })
+    );
+  };
+
   return (
     <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       <ListItem alignItems="flex-start">
@@ -27,7 +44,7 @@ const MembersListContainer = () => {
         {/*    </React.Fragment> */}
         {/*  } */}
         {/* /> */}
-        <IntroUserCard />
+        <IntroUserCard onToggleBookMark={handleToggleBookMark} />
       </ListItem>
       <Divider variant="inset" component="li" />
       {/* <ListItem alignItems="flex-start"> */}
