@@ -9,12 +9,11 @@ import Avatar from '@mui/material/Avatar';
 import { Button } from '@mui/material';
 import Bookmark from '../../common/bookmark';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 
 const IntroUserCard = ({ users, onToggleBookMark }) => {
-  const [user, setUser] = useState();
-
-  useEffect(() => {}, []);
+  // const [user, setUser] = useState();
+  //
+  // useEffect(() => {}, []);
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -33,7 +32,8 @@ const IntroUserCard = ({ users, onToggleBookMark }) => {
             {/* <BookmarkBorderOutlinedIcon /> */}
             {/* <BookmarkOutlinedIcon /> */}
 
-            <Bookmark status={user.bookmark} onClick={() => onToggleBookMark(user._id)} />
+            {/* <Bookmark status={user.bookmark} onClick={() => onToggleBookMark(user._id)} /> */}
+            <Bookmark />
           </IconButton>
         }
         title="Member Name"
