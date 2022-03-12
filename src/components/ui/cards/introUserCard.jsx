@@ -45,7 +45,7 @@ const IntroUserCard = ({ userId, onToggleBookMark }) => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <Button variant="contained" fullWidth="true">
+        <Button variant="contained" fullWidth={true}>
           Additional info
         </Button>
       </CardActions>
