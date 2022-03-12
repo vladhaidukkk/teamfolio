@@ -41,6 +41,10 @@ export const getUsers = () => (state) => {
   return state.users.entities;
 };
 
+export const getUserById = (id) => (state) => {
+  return state.users.entities && state.users.entities.find((user) => user.id === id);
+};
+
 export const getUsersLoadingStatus = () => (state) => {
   return state.users.isLoading;
 };

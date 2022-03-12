@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Divider } from '@mui/material';
-import { Intro, MembersListContainer } from '../../components/layout';
+import { Footer, Intro, MembersListContainer } from '../../components/layout';
 
 const Home = () => {
   return (
@@ -10,6 +10,8 @@ const Home = () => {
         <Intro />
         <Divider />
         <MembersListContainer />
+        <Divider />
+        <Footer />
       </Container>
     </>
   );
