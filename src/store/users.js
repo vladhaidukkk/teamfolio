@@ -40,15 +40,18 @@ export const loadUsers = () => async (dispatch) => {
 export const getUsers = () => (state) => {
   return state.users.entities;
 };
+
+export const getUserById = (id) => (state) => {
+  return state.users.entities && state.users.entities.find((user) => user.id === id);
+};
+
+// не знаю что єто воопше такое
 export const getCurrentUserId = () => (state) => state.users;
+
 export const getUsersLoadingStatus = () => (state) => {
   return state.users.isLoading;
 };
-export const getUserById = (userId) => (state) => {
-  if (state.users.entities) {
-    return state.users.entities.find((u) => u.id === userId);
-  }
-};
+
 export const getTeamMembers = () => (state) => {
   return (
     state.users.entities &&

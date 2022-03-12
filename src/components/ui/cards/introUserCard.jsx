@@ -9,11 +9,12 @@ import Avatar from '@mui/material/Avatar';
 import { Button } from '@mui/material';
 import Bookmark from '../../common/bookmark';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { getUserById } from '../../../store/users';
 
-const IntroUserCard = ({ users, onToggleBookMark }) => {
-  // const [user, setUser] = useState();
-  //
-  // useEffect(() => {}, []);
+const IntroUserCard = ({ userId, onToggleBookMark }) => {
+  // eslint-disable-next-line no-unused-vars
+  const userData = useSelector(getUserById(userId));
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -29,15 +30,12 @@ const IntroUserCard = ({ users, onToggleBookMark }) => {
         }
         action={
           <IconButton aria-label="add to favorites">
-            {/* <BookmarkBorderOutlinedIcon /> */}
-            {/* <BookmarkOutlinedIcon /> */}
-
-            {/* <Bookmark status={user.bookmark} onClick={() => onToggleBookMark(user._id)} /> */}
+            {/* <Bookmark status={userData.bookmark} onClick={() => onToggleBookMark(userData._id)} /> */}
             <Bookmark />
           </IconButton>
         }
-        title="Member Name"
-        subheader="Senior Front-end Developer"
+        // title={`${userData.name}+" "+${userData.surname}`}
+        // subheader={userData.profession}
       />
 
       <CardContent>
@@ -47,7 +45,7 @@ const IntroUserCard = ({ users, onToggleBookMark }) => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <Button variant="contained" fullWidth="true">
+        <Button variant="contained" fullWidth={true}>
           Additional info
         </Button>
       </CardActions>
@@ -56,9 +54,7 @@ const IntroUserCard = ({ users, onToggleBookMark }) => {
 };
 
 IntroUserCard.propTypes = {
-  users: PropTypes.array.isRequired,
-  // onSort: PropTypes.func.isRequired,
-  // selectedSort: PropTypes.object.isRequired,
-  onToggleBookMark: PropTypes.func.isRequired,
+  userId: PropTypes.string,
+  onToggleBookMark: PropTypes.func,
 };
 export default IntroUserCard;
