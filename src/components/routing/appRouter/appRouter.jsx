@@ -1,0 +1,27 @@
+import React from 'react';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import { Candidates, Home, Login, Logout, Portfolio, Registration, Team } from '../../../pages';
+import Account from '../../../pages/account/account';
+import Favourites from '../../../pages/favoutires/favourites';
+import PrivateRoute from '../privateRoute/privateRoute';
+
+const AppRouter = () => {
+  return (
+    <>
+      <Switch>
+        <Route path="/login" exact component={Login} />
+        <Route path="/registration" exact component={Registration} />
+        <Route path="/team" exact component={Team} />
+        <Route path="/favourites" exact component={Favourites} />
+        <Route path="/logout" exact component={Logout} />
+        <Route path="/portfolio" exact component={Portfolio} />
+        <Route path="/account" exact component={Account} />
+        <PrivateRoute path="/candidates" exact component={Candidates} />
+        <Route path="/" exact component={Home} />
+        <Redirect to="/" />
+      </Switch>
+    </>
+  );
+};
+
+export default AppRouter;
