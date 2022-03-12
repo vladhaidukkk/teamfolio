@@ -5,6 +5,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
+import { useMediaQuery } from '@mui/material';
 const StyledPaper = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -14,6 +15,7 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
 }));
 
 export default function AutoGridNoWrap({ message }) {
+  const media = useMediaQuery('(fontSize:15px)');
   return (
     <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3 }}>
       <StyledPaper
@@ -25,8 +27,9 @@ export default function AutoGridNoWrap({ message }) {
       >
         <Grid sx={{ paddingLeft: 0 }} container wrap="nowrap" spacing={2}>
           <Grid item xs zeroMinWidth>
-            <Typography variant="h5" noWrap>
+            <Typography sx={{ color: '#2583fd' }} variant="h5" noWrap>
               {message}
+              {media}
             </Typography>
           </Grid>
         </Grid>

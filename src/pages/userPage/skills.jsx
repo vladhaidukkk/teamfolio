@@ -15,9 +15,16 @@ const Skills = () => {
     <>
       <BoxSx>
         <AutoGridNoWrap message="My Skills"></AutoGridNoWrap>{' '}
-        <Box sx={{ textAlign: 'center', display: 'flex', justifyContent: 'space-between' }}>
+        <Box
+          sx={{
+            textAlign: 'center',
+            display: 'flex',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+          }}
+        >
           {skills.map((skill) => (
-            <Box key={skill.skill}>
+            <Box sx={{ marginBottom: '10px' }} key={skill.skill}>
               <CircularStatic level={skill.level}></CircularStatic>
               <Typography>{skill.skill}</Typography>
             </Box>
