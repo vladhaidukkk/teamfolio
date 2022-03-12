@@ -20,7 +20,10 @@ const pages = [
   { label: 'Candidates', path: '/candidates' },
   { label: 'Favourites', path: '/favourites' },
 ];
-const settings = ['Login', 'Registration'];
+const settings = [
+  { label: 'Login', path: '/login' },
+  { label: 'Registration', path: '/registration' },
+];
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -102,13 +105,15 @@ const Header = () => {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button
-                key={page.label}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page.label}
-              </Button>
+              <NavLink key={page.label} to={page.path}>
+                <Button
+                  key={page.label}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {page.label}
+                </Button>
+              </NavLink>
             ))}
           </Box>
 
@@ -135,8 +140,10 @@ const Header = () => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                <MenuItem key={setting.label} onClick={handleCloseUserMenu}>
+                  <NavLink to={setting.path}>
+                    <Typography textAlign="center">{setting.label}</Typography>
+                  </NavLink>
                 </MenuItem>
               ))}
             </Menu>
