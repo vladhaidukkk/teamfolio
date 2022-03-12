@@ -2,5 +2,6 @@ import httpService from './http.service';
 import authService from './auth.service';
 import localStorageService from './localStorage.service';
 import usersService from './users.service';
+import storageService from './storage.service';
 
-export { httpService, authService, localStorageService, usersService };
+export { httpService, authService, localStorageService, usersService, storageService };

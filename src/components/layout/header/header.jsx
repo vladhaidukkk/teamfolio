@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { getAccountData, getLoggedInStatus } from '../../../store/auth';
+import { getLoggedInStatus } from '../../../store/auth';
 import { NavBarConstants, UserStatusConstants } from '../../../utils/constants';
 import { HeaderAppBar } from '../../ui';
+import { getAccountData } from '../../../store/users';
 
 const Header = () => {
   const [menu, setMenu] = useState([]);

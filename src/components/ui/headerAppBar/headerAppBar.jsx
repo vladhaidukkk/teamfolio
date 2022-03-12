@@ -15,9 +15,10 @@ import { Logo } from '../../common';
 import PropTypes from 'prop-types';
 import { AccountMenu, NavMenu, NavBar } from '..';
 import { useSelector } from 'react-redux';
-import { getAccountData, getLoggedInStatus } from '../../../store/auth';
+import { getLoggedInStatus } from '../../../store/auth';
 import { Link } from 'react-router-dom';
 import { UserStatusConstants } from '../../../utils/constants';
+import { getAccountData } from '../../../store/users';
 
 const HeaderAppBar = ({ pages, menu }) => {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -91,7 +92,10 @@ const HeaderAppBar = ({ pages, menu }) => {
                 )}
                 <Tooltip title="Open menu">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                    <Avatar
+                      alt={currentUser.firstName + ' ' + currentUser.secondName}
+                      src={currentUser.avatarUrl}
+                    />
                   </IconButton>
                 </Tooltip>
                 <AccountMenu

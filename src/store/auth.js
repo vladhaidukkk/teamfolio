@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { authService, localStorageService, usersService } from '../services';
-import { UserStatusConstants } from '../utils/constants';
+import { authService, localStorageService } from '../services';
 import { history } from '../utils/core';
+import { createUser } from './users';
 
-const account = localStorageService.getAccountData();
+const accountId = localStorageService.getAccountId();
 
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    account: account || null,
-    isLoggedIn: !!account,
+    accountId: accountId || null,
+    isLoggedIn: !!accountId,
     error: null,
   },
   reducers: {
@@ -17,11 +17,11 @@ const authSlice = createSlice({
       state.error = null;
     },
     successed: (state, action) => {
-      state.account = action.payload;
+      state.accountId = action.payload;
       state.isLoggedIn = true;
     },
     loggedOut: (state) => {
-      state.account = null;
+      state.accountId = null;
       state.isLoggedIn = false;
     },
     failed: (state, action) => {
@@ -38,16 +38,9 @@ export const signUp =
     dispatch(requested());
     try {
       const authData = await authService.signUp({ email, password });
-      const accountData = await usersService.createUser(authData.localId, {
-        id: authData.localId,
-        email,
-        ...restData,
-        status: UserStatusConstants.Guest,
-        registeredAt: Date.now(),
-      });
       localStorageService.setTokens(authData);
-      localStorageService.setAccountData(accountData);
-      dispatch(successed(accountData));
+      dispatch(createUser(authData.localId, { email, ...restData }));
+      dispatch(successed(authData.localId));
       history.push('/');
     } catch (error) {
       const { message } = error;
@@ -61,10 +54,8 @@ export const logIn =
     dispatch(requested());
     try {
       const authData = await authService.logIn({ email, password });
-      const accountData = await usersService.getUser(authData.localId);
       localStorageService.setTokens(authData);
-      localStorageService.setAccountData(accountData);
-      dispatch(successed(accountData));
+      dispatch(successed(authData.localId));
       history.push(redirect);
     } catch (error) {
       const { message } = error;
@@ -74,17 +65,20 @@ export const logIn =
 
 export const logOut = () => (dispatch) => {
   localStorageService.removeTokens();
-  localStorageService.removeAccountData();
   dispatch(loggedOut());
   history.push('/');
 };
 
-export const getAccountData = () => (state) => {
-  return state.auth.account;
+export const getAccountId = () => (state) => {
+  return state.auth.accountId;
 };
 
 export const getLoggedInStatus = () => (state) => {
   return state.auth.isLoggedIn;
+};
+
+export const getAuthError = () => (state) => {
+  return state.auth.error;
 };
 
 const authReducer = authSlice.reducer;

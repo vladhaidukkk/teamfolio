@@ -8,9 +8,13 @@ const UniversalBreadcrumbs = ({ input }) => {
     <Breadcrumbs aria-label="breadcrumb">
       {input.map((el) => {
         return el.path ? (
-          <Link to={el.path}>{el.name}</Link>
+          <Link key={el.name} to={el.path}>
+            {el.name}
+          </Link>
         ) : (
-          <Typography color="text.primary">{el.name}</Typography>
+          <Typography key={el.name} color="text.primary">
+            {el.name}
+          </Typography>
         );
       })}
     </Breadcrumbs>

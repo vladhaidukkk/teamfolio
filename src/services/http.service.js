@@ -5,7 +5,7 @@ import authService from './auth.service';
 import { toast } from 'material-react-toastify';
 
 const http = axios.create({
-  baseURL: configKeys.apiEndpoint,
+  baseURL: configKeys.databaseURL + '/',
 });
 
 http.interceptors.request.use(
@@ -35,7 +35,10 @@ http.interceptors.request.use(
 
 http.interceptors.response.use(
   (res) => {
-    res.data = Object.values(res.data)[0].id ? Object.values(res.data) : res.data;
+    if (res.data) {
+      res.data = Object.values(res.data)[0].id ? Object.values(res.data) : res.data;
+    }
+
     return res;
   },
   (error) => {
