@@ -6,6 +6,7 @@ import TextareaField from './textareaField/textareaField';
 import DateField from './dateField/dateField';
 import FileField from './fileField/fileField';
 import MultiSelectField from './multiSelectField/multiSelectField';
+import SliderField from './sliderField/sliderField';
 
 export default Form;
 export {
@@ -16,4 +17,5 @@ export {
   DateField,
   FileField,
   MultiSelectField,
+  SliderField,
 };

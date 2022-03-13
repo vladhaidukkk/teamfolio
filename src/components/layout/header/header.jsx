@@ -13,8 +13,6 @@ const Header = () => {
   const currentUser = useSelector(getAccountData());
   const currentUserStatus = currentUser?.status;
 
-  console.log(currentUserStatus);
-
   useEffect(() => {
     if (!isLoggedIn) {
       setPages(NavBarConstants.Logout.pages);

@@ -1,6 +1,7 @@
 import { Container } from '@mui/material';
 import React from 'react';
 import { UniversalBreadcrumbs } from '../../components/common';
+import CandidateList from '../../components/layout/candidatesList/candidatesList';
 
 const Candidates = () => {
   return (
@@ -8,11 +9,11 @@ const Candidates = () => {
       <Container>
         <UniversalBreadcrumbs
           input={[
-            { name: 'Main', path: '/' },
+            { name: 'Home', path: '/' },
             { name: 'Candidates', path: '' },
           ]}
         />
-        <div>candidates page</div>
+        <CandidateList pageSize={8} />
       </Container>
     </>
   );

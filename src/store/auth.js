@@ -9,7 +9,7 @@ const authSlice = createSlice({
   name: 'auth',
   initialState: {
     accountId: accountId || null,
-    isLoggedIn: !!accountId,
+    isLoggedIn: !!accountId && accountId !== 'null',
     error: null,
   },
   reducers: {
