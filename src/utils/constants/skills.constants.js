@@ -2,19 +2,43 @@ const SkillsConstants = {
   Entities: [
     {
       label: 'JavaScript',
-      color: '#ff9800',
+      color: '#ef9a9a',
     },
     {
       label: 'NodeJS',
-      color: '#4caf50',
+      color: '#ffcc80',
     },
     {
       label: 'Firebase',
-      color: '#ba68c8',
+      color: '#ce93d8',
     },
     {
       label: 'MongoDB',
-      color: '#03a9f4',
+      color: '#fff59d',
+    },
+    {
+      label: 'C#',
+      color: '#9fa8da',
+    },
+    {
+      label: 'Java',
+      color: '#ffab91',
+    },
+    {
+      label: 'Go',
+      color: '#80deea',
+    },
+    {
+      label: 'Material UI',
+      color: '#a5d6a7',
+    },
+    {
+      label: 'C++',
+      color: '#c5e1a5',
+    },
+    {
+      label: 'Julia',
+      color: '#81d4fa',
     },
   ],
 };
