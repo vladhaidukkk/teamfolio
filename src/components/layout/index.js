@@ -4,5 +4,6 @@ import MembersList from './membersList/membersList';
 import Footer from './footer/footer';
 import CandidateList from './candidatesList/candidatesList';
 import FavouritesList from './favouritesList/favouritesList';
+import Testimonials from './testimonials/testimonials';
 
-export { Header, Intro, MembersList, Footer, CandidateList, FavouritesList };
+export { Header, Intro, MembersList, Footer, CandidateList, FavouritesList, Testimonials };
