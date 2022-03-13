@@ -26,7 +26,6 @@ const NavBarConstants = {
     ],
     menu: [
       { label: 'Account', path: '/account' },
-      { label: 'Resume', path: '/resume' },
       { label: 'Logout', path: '/logout' },
     ],
   },

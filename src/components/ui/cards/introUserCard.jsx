@@ -14,7 +14,7 @@ const IntroUserCard = ({ userData }) => {
   // const { firstName, lastName, avatarUrl } = userData;
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card>
       <CardHeader
         avatar={
           <Avatar
