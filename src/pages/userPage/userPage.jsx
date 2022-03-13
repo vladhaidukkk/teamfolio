@@ -27,14 +27,18 @@ const UserPage = () => {
   }
 
   if (account) {
-    const { firstName, lastName, email, avatarUrl } = account;
+    const { firstName, lastName, email, avatarUrl, description, roles } = account;
     const yearsOld = calculateAge(account.dateOfBirth);
     return (
       <>
         <SimpleContainer>
-          {' '}
           {account.id === accData.id && <Options handleClick={redirectToEdit} />}
-          <AboutMe name={firstName + ' ' + lastName} avatar={avatarUrl} />
+          <AboutMe
+            name={firstName + ' ' + lastName}
+            avatar={avatarUrl}
+            desc={description}
+            role={roles}
+          />
           <PersonalInfo name={firstName + ' ' + lastName} email={email} years={yearsOld} />
           <Skills />
           <Experience />

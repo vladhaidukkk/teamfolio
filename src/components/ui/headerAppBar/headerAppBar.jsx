@@ -27,7 +27,7 @@ const HeaderAppBar = ({ pages, menu }) => {
   const isLoggedIn = useSelector(getLoggedInStatus());
   const currentUser = useSelector(getAccountData());
   const currentUserStatus = currentUser?.status;
-  console.log(isLoggedIn);
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -42,8 +42,9 @@ const HeaderAppBar = ({ pages, menu }) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
   return (
-    <AppBar sx={{ marginBottom: '50px' }} position="static">
+    <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -92,8 +93,8 @@ const HeaderAppBar = ({ pages, menu }) => {
                 <Tooltip title="Open menu">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar
-                      alt={currentUser?.firstName + ' ' + currentUser?.secondName}
-                      src={currentUser?.avatarUrl}
+                      alt={currentUser.firstName + ' ' + currentUser.secondName}
+                      src={currentUser.avatarUrl}
                     />
                   </IconButton>
                 </Tooltip>

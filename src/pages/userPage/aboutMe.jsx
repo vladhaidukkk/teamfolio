@@ -4,7 +4,7 @@ import AutoGridNoWrap from '../../components/muiComponents/autoGridNoWrap';
 import ComplexGrid from '../../components/muiComponents/ComplexGrid';
 import TextRating from '../../components/muiComponents/starRating';
 import PropTypes from 'prop-types';
-const AboutMe = ({ name, avatar }) => {
+const AboutMe = ({ name, avatar, desc, role }) => {
   const rating = [
     { id: 1, language: 'English', value: '3' },
     { id: 2, language: 'Spanish', value: '3' },
@@ -12,14 +12,26 @@ const AboutMe = ({ name, avatar }) => {
   ];
   return (
     <>
-      <ComplexGrid name={name} avatar={avatar}>
+      <ComplexGrid name={name} avatar={avatar} desc={desc}>
         <AutoGridNoWrap message="About Me"></AutoGridNoWrap>
         {rating.map((val) => (
           <TextRating key={val.id} options={val}></TextRating>
         ))}
       </ComplexGrid>{' '}
       <Typography sx={{ justifyContent: 'center', display: 'flex' }} variant="span">
-        On this project : worked on
+        Role in this project :{' '}
+        {role
+          ? role.map((roles) => (
+              <Typography key={roles.label} sx={{ color: roles.color }}>
+                {roles.label}
+                {role[role.length - 1].label !== roles.label ? (
+                  <span style={{ color: 'black' }}>{', '}</span>
+                ) : (
+                  ''
+                )}
+              </Typography>
+            ))
+          : 'none'}
       </Typography>
     </>
   );
@@ -27,5 +39,7 @@ const AboutMe = ({ name, avatar }) => {
 AboutMe.propTypes = {
   name: PropTypes.string,
   avatar: PropTypes.string,
+  desc: PropTypes.string,
+  role: PropTypes.array,
 };
 export default AboutMe;
