@@ -17,7 +17,7 @@ const IntroUserCard = ({ userId, onToggleBookMark }) => {
   const userData = useSelector(getUserById(userId));
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card>
       <CardHeader
         avatar={
           <Avatar

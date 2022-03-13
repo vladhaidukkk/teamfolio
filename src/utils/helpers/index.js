@@ -1,3 +1,4 @@
 import calculateAge from './calculateAge.helper';
+import paginate from './paginate';
 
-export { calculateAge };
+export { calculateAge, paginate };

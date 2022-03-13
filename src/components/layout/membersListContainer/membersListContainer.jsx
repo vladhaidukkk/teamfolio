@@ -1,96 +1,37 @@
-import * as React from 'react';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
+import React, { useState } from 'react';
 import IntroUserCard from '../../ui/cards/introUserCard';
-import { useState } from 'react';
+import { Box, Grid, Pagination } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { getTeamMembers } from '../../../store/users';
+import { paginate } from '../../../utils/helpers';
 
 const MembersListContainer = () => {
-  const [users, setUsers] = useState();
+  const PAGE_SIZE = 4;
+  const users = useSelector(getTeamMembers());
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageQty = Math.ceil(users.length / PAGE_SIZE);
 
-  const handleToggleBookMark = (id) => {
-    setUsers(
-      users.map((user) => {
-        if (user._id === id) {
-          return {
-            ...user,
-            bookmark: !user.bookmark,
-          };
-        }
-        return user;
-      })
-    );
+  const handlePageChange = (_, num) => {
+    setCurrentPage(num);
   };
 
+  const usersCrop = paginate(users, currentPage, PAGE_SIZE);
+
   return (
-    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      <ListItem alignItems="flex-start">
-        {/* <ListItemAvatar> */}
-        {/*  <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" /> */}
-        {/* </ListItemAvatar> */}
-        {/* <ListItemText */}
-        {/*  primary="Brunch this weekend?" */}
-        {/*  secondary={ */}
-        {/*    <React.Fragment> */}
-        {/*      <Typography */}
-        {/*        sx={{ display: 'inline' }} */}
-        {/*        component="span" */}
-        {/*        variant="body2" */}
-        {/*        color="text.primary" */}
-        {/*      > */}
-        {/*        Ali Connors */}
-        {/*      </Typography> */}
-        {/*      {" — I'll be in your neighborhood doing errands this…"} */}
-        {/*    </React.Fragment> */}
-        {/*  } */}
-        {/* /> */}
-        <IntroUserCard onToggleBookMark={handleToggleBookMark} />
-      </ListItem>
-      <Divider variant="inset" component="li" />
-      {/* <ListItem alignItems="flex-start"> */}
-      {/*  <ListItemAvatar> */}
-      {/*    <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" /> */}
-      {/*  </ListItemAvatar> */}
-      {/*  <ListItemText */}
-      {/*    primary="Summer BBQ" */}
-      {/*    secondary={ */}
-      {/*      <React.Fragment> */}
-      {/*        <Typography */}
-      {/*          sx={{ display: 'inline' }} */}
-      {/*          component="span" */}
-      {/*          variant="body2" */}
-      {/*          color="text.primary" */}
-      {/*        > */}
-      {/*          to Scott, Alex, Jennifer */}
-      {/*        </Typography> */}
-      {/*        {" — Wish I could come, but I'm out of town this…"} */}
-      {/*      </React.Fragment> */}
-      {/*    } */}
-      {/*  /> */}
-      {/* </ListItem> */}
-      {/* <Divider variant="inset" component="li" /> */}
-      {/* <ListItem alignItems="flex-start"> */}
-      {/*  <ListItemAvatar> */}
-      {/*    <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" /> */}
-      {/*  </ListItemAvatar> */}
-      {/*  <ListItemText */}
-      {/*    primary="Oui Oui" */}
-      {/*    secondary={ */}
-      {/*      <React.Fragment> */}
-      {/*        <Typography */}
-      {/*          sx={{ display: 'inline' }} */}
-      {/*          component="span" */}
-      {/*          variant="body2" */}
-      {/*          color="text.primary" */}
-      {/*        > */}
-      {/*          Sandra Adams */}
-      {/*        </Typography> */}
-      {/*        {' — Do you have Paris recommendations? Have you ever…'} */}
-      {/*      </React.Fragment> */}
-      {/*    } */}
-      {/*  /> */}
-      {/* </ListItem> */}
-    </List>
+    <>
+      <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}>
+        {usersCrop.map((_, index) => (
+          <Grid item xs={12} sm={4} md={3} lg={3} key={index} style={{ margin: '0 auto' }}>
+            <IntroUserCard />
+          </Grid>
+        ))}
+      </Grid>
+      <Box display="flex" justifyContent="center" alignItems="center" minHeight="5rem">
+        {pageQty > 1 && (
+          <Pagination count={pageQty} page={currentPage} onChange={handlePageChange} />
+        )}
+      </Box>
+    </>
   );
 };
 
