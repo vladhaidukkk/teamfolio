@@ -13,6 +13,8 @@ const Header = () => {
   const currentUser = useSelector(getAccountData());
   const currentUserStatus = currentUser?.status;
 
+  console.log(currentUserStatus);
+
   useEffect(() => {
     if (!isLoggedIn) {
       setPages(NavBarConstants.Logout.pages);
@@ -30,7 +32,7 @@ const Header = () => {
         setPages(NavBarConstants.LoginGuest.pages);
       }
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, currentUserStatus]);
 
   return <HeaderAppBar menu={menu} pages={pages} />;
 };
