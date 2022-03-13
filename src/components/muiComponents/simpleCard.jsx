@@ -5,28 +5,17 @@ import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 
 OutlinedCard.propTypes = {
-  data: PropTypes.array,
+  data: PropTypes.string,
 };
 
 export default function OutlinedCard({ data }) {
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
-      {data.map((card) => {
-        return (
-          <CardContent sx={{ maxWidth: '50%' }} key={card.job}>
-            <Typography variant="h5" component="div">
-              {card.job}
-            </Typography>
-            <Typography variant="h5" component="div">
-              {card.year}
-            </Typography>
-            <Typography variant="h6" component="div">
-              {card.title}
-            </Typography>
-            <Typography variant="body2">{card.desc}</Typography>
-          </CardContent>
-        );
-      })}
+      <CardContent sx={{ fontSize: '20px', maxWidth: '50%' }}>
+        <Typography sx={{ fontSize: '20px' }} variant="body2">
+          {data}
+        </Typography>
+      </CardContent>
     </Box>
   );
 }

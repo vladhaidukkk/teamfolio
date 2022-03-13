@@ -3,14 +3,8 @@ import React from 'react';
 import AutoGridNoWrap from '../../components/muiComponents/autoGridNoWrap';
 import BoxSx from '../../components/muiComponents/box';
 import CircularStatic from '../../components/muiComponents/progressBar';
-
-const Skills = () => {
-  const skills = [
-    { skill: 'HTML & CSS', level: 80 },
-    { skill: 'WORDPRESS', level: 70 },
-    { skill: 'PHP', level: 90 },
-    { skill: 'NODEJS', level: 85 },
-  ];
+import PropTypes from 'prop-types';
+const Skills = ({ skills }) => {
   return (
     <>
       <BoxSx>
@@ -19,14 +13,14 @@ const Skills = () => {
           sx={{
             textAlign: 'center',
             display: 'flex',
-            justifyContent: 'space-between',
+            justifyContent: 'space-around',
             flexWrap: 'wrap',
           }}
         >
           {skills.map((skill) => (
-            <Box sx={{ marginBottom: '10px' }} key={skill.skill}>
-              <CircularStatic level={skill.level}></CircularStatic>
-              <Typography>{skill.skill}</Typography>
+            <Box sx={{ marginBottom: '10px' }} key={skill.label}>
+              <CircularStatic level={skill.value}></CircularStatic>
+              <Typography>{skill.label}</Typography>
             </Box>
           ))}
         </Box>
@@ -34,5 +28,7 @@ const Skills = () => {
     </>
   );
 };
-
+Skills.propTypes = {
+  skills: PropTypes.array,
+};
 export default Skills;
