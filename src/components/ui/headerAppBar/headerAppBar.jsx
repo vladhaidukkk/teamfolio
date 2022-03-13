@@ -44,7 +44,7 @@ const HeaderAppBar = ({ pages, menu }) => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar sx={{ marginBottom: '50px' }} position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
