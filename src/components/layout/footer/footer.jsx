@@ -44,7 +44,7 @@ const Footer = () => {
         label="TwitterIcon"
         value="twitterIcon"
         icon={
-          <Link href="https://twitter.com/">
+          <Link to="https://twitter.com/">
             {' '}
             <TwitterIcon />
           </Link>

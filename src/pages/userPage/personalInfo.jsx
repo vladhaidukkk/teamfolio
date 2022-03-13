@@ -7,10 +7,7 @@ const PersonalInfo = ({ years, name, email }) => {
   const data = {
     name: name,
     email: email,
-    phone: '+415-347-7562',
-    address: 'Table Rock, NE, USA',
     age: years + ' years old',
-    nationality: 'American',
   };
   return (
     <>
