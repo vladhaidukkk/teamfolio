@@ -10,12 +10,22 @@ import Bookmark from '../../common/bookmark';
 import { Button } from '@mui/material';
 import PropTypes from 'prop-types';
 import { history } from '../../../utils/core';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAccountData, toggleBookmark } from '../../../store/users';
 
 const IntroUserCard = ({ user }) => {
-  const { id, firstName, lastName, avatarUrl } = user;
+  const { id, firstName, lastName, avatarUrl, shortIntroduction } = user;
+  const currentUser = useSelector(getAccountData());
+  const dispatch = useDispatch();
+
+  const isBookmarked = currentUser.favourites?.includes(id);
 
   const redirectToUserPage = () => {
     history.push(`/users/${id}`);
+  };
+
+  const handleToggleBookmark = () => {
+    dispatch(toggleBookmark(currentUser.id, id));
   };
 
   if (user) {
@@ -24,18 +34,15 @@ const IntroUserCard = ({ user }) => {
         <CardHeader
           avatar={<Avatar sx={{ width: 56, height: 56 }} src={avatarUrl} aria-label="memberCard" />}
           action={
-            <IconButton aria-label="add to favorites">
-              {/* <Bookmark status={userData.bookmark} onClick={() => onToggleBookMark(userData._id)} /> */}
-              <Bookmark />
+            <IconButton aria-label="add to favorites" onClick={handleToggleBookmark}>
+              <Bookmark status={isBookmarked} />
             </IconButton>
           }
           title={firstName + ' ' + lastName}
-          // subheader={<Chip label={roles.label} color={roles.color} />}
         />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            Adaptability and Thirst for Learning. Codes, frameworks, and other tools constantly
-            change in the world of IT. Creative and Critical Thinker.
+            {shortIntroduction}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
@@ -52,9 +59,5 @@ const IntroUserCard = ({ user }) => {
 
 IntroUserCard.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  firstName: PropTypes.string,
-  lastName: PropTypes.string,
-  avatarUrl: PropTypes.string,
-  onToggleBookMark: PropTypes.func,
 };
 export default IntroUserCard;
