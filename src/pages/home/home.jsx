@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Divider } from '@mui/material';
-import { Footer, Intro, MembersList } from '../../components/layout';
+import { Footer, Intro, MembersList, Testimonials } from '../../components/layout';
 import { ProjectsCarousel } from '../../components/ui';
 
 const Home = () => {
@@ -13,6 +13,8 @@ const Home = () => {
         <ProjectsCarousel />
         <Divider />
         <MembersList pageSize={4} />
+        <Divider />
+        <Testimonials />
         <Divider />
         <Footer />
       </Container>

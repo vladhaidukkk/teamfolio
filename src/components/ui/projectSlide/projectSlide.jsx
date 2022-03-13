@@ -14,6 +14,8 @@ const ProjectSlide = ({ img, name }) => {
         alignItems: 'flex-end',
         width: '100%',
         height: '300px',
+        borderRadius: 2,
+        overflow: 'hidden',
       }}
     >
       <img
@@ -37,6 +39,7 @@ const ProjectSlide = ({ img, name }) => {
           px: 1.5,
           fontSize: '28px',
           fontWeight: 300,
+          borderRadius: 1,
         }}
       >
         {name}
