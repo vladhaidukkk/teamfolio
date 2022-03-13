@@ -1,7 +1,7 @@
-import { Menu, MenuItem, Typography } from '@mui/material';
+import { Menu, MenuItem } from '@mui/material';
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Link from '../../common/link';
 
 const NavMenu = ({ pages, anchorElNav, handleCloseNavMenu }) => {
   return (
@@ -25,9 +25,7 @@ const NavMenu = ({ pages, anchorElNav, handleCloseNavMenu }) => {
     >
       {pages.map((page) => (
         <MenuItem key={page.label} onClick={handleCloseNavMenu}>
-          <Typography component={Link} to={page.path} textAlign="center">
-            {page.label}
-          </Typography>
+          <Link path={page.path}>{page.label}</Link>
         </MenuItem>
       ))}
     </Menu>

@@ -85,15 +85,14 @@ const HeaderAppBar = ({ pages, menu }) => {
             {isLoggedIn ? (
               <>
                 {currentUserStatus === UserStatusConstants.Guest && (
-                  // TODO: replace with custom button
-                  <Button component={Link} to={'/editresume'} color="inherit">
-                    Join our team!
+                  <Button component={Link} to={'/editresume'} color="inherit" sx={{ mr: 2 }}>
+                    Join our team
                   </Button>
                 )}
                 <Tooltip title="Open menu">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar
-                      alt={currentUser?.firstName + ' ' + currentUser?.secondName}
+                      alt={currentUser?.firstName + ' ' + currentUser?.lastName}
                       src={currentUser?.avatarUrl}
                     />
                   </IconButton>

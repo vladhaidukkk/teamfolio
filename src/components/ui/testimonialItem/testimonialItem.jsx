@@ -12,11 +12,11 @@ const TestimonialItem = ({ data }) => {
     <Box sx={{ boxShadow: 3, bgcolor: '#f5f5f5', p: 2, pb: 3, borderRadius: 2 }}>
       <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
         <Avatar
-          alt={userData.firstName + ' ' + userData.secondName}
+          alt={userData.firstName + ' ' + userData.lastName}
           src={userData.avatarUrl}
           sx={{ width: 48, height: 48, mr: 1 }}
         />
-        <Typography>{userData.firstName + ' ' + userData.secondName}</Typography>
+        <Typography>{userData.firstName + ' ' + userData.lastName}</Typography>
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
         <Typography variant="h5">Message</Typography>

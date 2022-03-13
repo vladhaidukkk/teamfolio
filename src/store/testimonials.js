@@ -1,5 +1,6 @@
 import { createAction, createSlice } from '@reduxjs/toolkit';
 import { testimonialsService } from '../services';
+import { toast } from 'material-react-toastify';
 
 const testimonialsSlice = createSlice({
   name: 'testimonials',
@@ -52,6 +53,7 @@ export const createTestimonial = (id, payload) => async (dispatch) => {
   try {
     const data = await testimonialsService.createTestimonial(id, payload);
     dispatch(created(data));
+    toast.info('You sent a feedback. Thanks:)');
   } catch (error) {
     const { message } = error;
     dispatch(crudFailed(message));

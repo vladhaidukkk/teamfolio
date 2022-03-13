@@ -5,19 +5,17 @@ import { ProjectsCarousel } from '../../components/ui';
 
 const Home = () => {
   return (
-    <>
-      <Container>
-        <Intro />
-        <Divider />
-        <ProjectsCarousel />
-        <Divider />
-        <MembersList pageSize={4} />
-        <Divider />
-        <Testimonials />
-        <Divider />
-        <Footer />
-      </Container>
-    </>
+    <Container>
+      <Intro />
+      <Divider />
+      <ProjectsCarousel />
+      <Divider />
+      <MembersList pageSize={4} />
+      <Divider />
+      <Testimonials />
+      <Divider />
+      <Footer />
+    </Container>
   );
 };
 
