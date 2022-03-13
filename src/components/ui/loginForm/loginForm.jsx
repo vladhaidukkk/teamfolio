@@ -14,7 +14,6 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
   const handleFormSubmit = (data) => {
-    console.log(data);
     const redirect = location.state?.from.pathname ? location.state.from.pathname : '/';
     dispatch(logIn(data, redirect));
   };
