@@ -12,7 +12,7 @@ const AboutMe = ({ name, avatar, desc, role, languages }) => {
         {languages.map((val) => (
           <TextRating key={val.label} options={val} />
         ))}
-      </ComplexGrid>{' '}
+      </ComplexGrid>
       <Typography sx={{ justifyContent: 'center', display: 'flex' }} variant="span">
         Role in this project :{' '}
         {role

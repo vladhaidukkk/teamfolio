@@ -97,7 +97,6 @@ export const toggleBookmark = (userId, favId) => async (dispatch, getState) => {
   const newUser = { ...currentUser, favourites: newFav };
   try {
     const data = await usersService.patchUser(userId, newUser);
-    console.log(data);
     dispatch(updated({ id: userId, data }));
   } catch (error) {
     const { message } = error;
