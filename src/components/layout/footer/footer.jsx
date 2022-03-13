@@ -9,7 +9,7 @@ import { Link } from '@mui/material';
 
 const Footer = () => {
   return (
-    <BottomNavigation sx={{ textAlign: 'center', width: 500 }}>
+    <BottomNavigation>
       <BottomNavigationAction
         label="Contacts"
         value="contactEmail"

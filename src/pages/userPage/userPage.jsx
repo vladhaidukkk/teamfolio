@@ -1,9 +1,11 @@
+import { Button } from '@mui/material';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import SimpleContainer from '../../components/muiComponents/simpleContainer';
-import { getAccountData, getUserById } from '../../store/users';
+import { getAccountData, getUserById, updateUser } from '../../store/users';
+import { UserStatusConstants } from '../../utils/constants';
 import calculateAge from '../../utils/helpers/calculateAge.helper';
 import AboutMe from './aboutMe';
 import Experience from './experiense';
@@ -14,12 +16,17 @@ import Social from './social';
 
 const UserPage = () => {
   const { userId } = useParams();
+  const dispatch = useDispatch();
   const history = useHistory();
   const account = useSelector(getUserById(userId));
   const accData = useSelector(getAccountData());
   console.log(accData);
   const redirectToEdit = () => {
     history.push(`/editresume`);
+  };
+
+  const handleAddMember = () => {
+    dispatch(updateUser(userId, { status: UserStatusConstants.TeamMember }));
   };
 
   if (accData.status === 'guest' && account.id !== accData.id) {
@@ -65,6 +72,12 @@ const UserPage = () => {
     return (
       <>
         <SimpleContainer>
+
+          {accData.status === UserStatusConstants.TeamMember &&
+            account.status === UserStatusConstants.Candidate && (
+              <Button onClick={handleAddMember}>Add this user our team</Button>
+            )}
+
           {account.id === accData.id && <Options handleClick={redirectToEdit} />}
           <AboutMe
             name={firstName + ' ' + lastName}

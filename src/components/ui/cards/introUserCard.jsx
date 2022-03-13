@@ -10,22 +10,23 @@ import Bookmark from '../../common/bookmark';
 import { Button } from '@mui/material';
 import PropTypes from 'prop-types';
 import { history } from '../../../utils/core';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getAccountData, toggleBookmark } from '../../../store/users';
+import { Badges } from '..';
 
 const IntroUserCard = ({ user }) => {
-  const { id, firstName, lastName, avatarUrl, shortIntroduction } = user;
-  const currentUser = useSelector(getAccountData());
+  const { id, firstName, lastName, avatarUrl, shortIntroduction, roles } = user;
+  const userAuth = useSelector(getAccountData());
   const dispatch = useDispatch();
 
-  const isBookmarked = currentUser?.favourites?.includes(id);
+  const isBookmarked = userAuth?.favourites?.includes(id);
 
   const redirectToUserPage = () => {
     history.push(`/users/${id}`);
   };
 
   const handleToggleBookmark = () => {
-    dispatch(toggleBookmark(currentUser.id, id));
+    dispatch(toggleBookmark(userAuth.id, id));
   };
 
   if (user) {
@@ -40,7 +41,8 @@ const IntroUserCard = ({ user }) => {
           }
           title={firstName + ' ' + lastName}
         />
-        <CardContent>
+        <CardContent sx={{ minHeight: 150 }}>
+          <Badges roles={roles} />
           <Typography variant="body2" color="text.secondary">
             {shortIntroduction}
           </Typography>
