@@ -9,7 +9,7 @@ const Team = () => {
       <Container>
         <UniversalBreadcrumbs
           input={[
-            { name: 'Main', path: '/' },
+            { name: 'Home', path: '/' },
             { name: 'Team', path: '' },
           ]}
         />

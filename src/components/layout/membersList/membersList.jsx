@@ -9,6 +9,8 @@ const MembersList = ({ pageSize }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const users = useSelector(getTeamMembers());
 
+  if (!users) return 'No users found...';
+
   const pageQty = Math.ceil(users.length / pageSize);
 
   const handlePageChange = (_, num) => {

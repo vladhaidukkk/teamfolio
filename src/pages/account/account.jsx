@@ -36,7 +36,7 @@ const Account = () => {
     <Container>
       <UniversalBreadcrumbs
         input={[
-          { name: 'Main', path: '/' },
+          { name: 'Home', path: '/' },
           { name: 'Account', path: '' },
         ]}
       />
