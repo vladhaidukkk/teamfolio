@@ -85,6 +85,26 @@ export const updateUser = (id, payload, redirect) => async (dispatch) => {
   }
 };
 
+export const toggleBookmark = (userId, favId) => async (dispatch, getState) => {
+  dispatch(updateRequested());
+  const currentUser = getState().users.entities.find((u) => u.id === userId);
+  let newFav = currentUser.favourites ? [...currentUser?.favourites] : [];
+  if (currentUser.favourites?.includes(favId)) {
+    newFav = newFav.filter((id) => id !== favId);
+  } else {
+    newFav.push(favId);
+  }
+  const newUser = { ...currentUser, favourites: newFav };
+  try {
+    const data = await usersService.patchUser(userId, newUser);
+    console.log(data);
+    dispatch(updated({ id: userId, data }));
+  } catch (error) {
+    const { message } = error;
+    dispatch(crudFailed(message));
+  }
+};
+
 export const getUsers = () => (state) => {
   return state.users.entities;
 };
@@ -115,6 +135,12 @@ export const getCandidates = () => (state) => {
     state.users.entities &&
     state.users.entities.filter((user) => user.status === UserStatusConstants.Candidate)
   );
+};
+
+export const getFavourites = (id) => (state) => {
+  const currentUser = state.users.entities.find((u) => u.id === id);
+  const favUsers = state.users?.entities.filter((u) => currentUser.favourites?.includes(u.id));
+  return favUsers;
 };
 
 export const getUsersError = () => (state) => {

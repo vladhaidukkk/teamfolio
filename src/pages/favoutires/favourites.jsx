@@ -1,9 +1,20 @@
+import { Container } from '@mui/material';
 import React from 'react';
+import { UniversalBreadcrumbs } from '../../components/common';
+import { FavouritesList } from '../../components/layout';
 
 const Favourites = () => {
   return (
     <>
-      <div>Favourites page</div>
+      <Container>
+        <UniversalBreadcrumbs
+          input={[
+            { name: 'Home', path: '/' },
+            { name: 'Team', path: '' },
+          ]}
+        />
+        <FavouritesList pageSize={8} />
+      </Container>
     </>
   );
 };
