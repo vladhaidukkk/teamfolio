@@ -44,7 +44,7 @@ const HeaderAppBar = ({ pages, menu }) => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ mb: 5 }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography

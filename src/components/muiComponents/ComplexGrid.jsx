@@ -1,17 +1,11 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import Favorite from './favorite';
 import { Box } from '@mui/system';
-const Img = styled('img')({
-  margin: 'auto',
-  display: 'block',
-  maxWidth: '100%',
-  maxHeight: '100%',
-});
+import { Avatar } from '@mui/material';
 
 export default function ComplexGrid({ children, name, avatar, desc }) {
   return (
@@ -19,7 +13,7 @@ export default function ComplexGrid({ children, name, avatar, desc }) {
       sx={{
         p: 2,
         margin: 'auto',
-        marginBottom: '50px',
+        marginBottom: '20px',
         maxWidth: 500,
         flexGrow: 1,
         boxShadow: 0,
@@ -27,12 +21,11 @@ export default function ComplexGrid({ children, name, avatar, desc }) {
       }}
     >
       {children && children[0]}
-      <Grid container spacing={2}>
+      <Grid spacing={2}>
         <Grid
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'space-around',
           }}
           item
         >
@@ -41,33 +34,21 @@ export default function ComplexGrid({ children, name, avatar, desc }) {
               margin: '0 auto',
               width: 150,
               justifyContent: 'center',
-              height: 200,
               marginBottom: 0,
             }}
           >
-            <Img
-              sx={{
-                display: 'block',
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                borderRadius: '10px',
-              }}
-              alt="complex"
-              src={avatar}
-            />
+            <Avatar alt={name} src={avatar} sx={{ width: 150, height: 150 }} />
+            <Favorite />
           </Box>
-          <Favorite></Favorite>
         </Grid>
         <Grid item xs={12} sm container>
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs>
-              <Typography gutterBottom variant="subtitle1" component="div">
+              <Typography gutterBottom fontSize={32}>
                 {name}
               </Typography>
-
               {desc && (
-                <Typography variant="body2" gutterBottom>
+                <Typography gutterBottom fontSize={18}>
                   {desc}
                 </Typography>
               )}

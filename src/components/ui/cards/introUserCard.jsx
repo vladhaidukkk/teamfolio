@@ -21,8 +21,6 @@ const IntroUserCard = ({ user }) => {
 
   const isBookmarked = userAuth?.favourites?.includes(id);
 
-  console.log(id);
-
   const redirectToUserPage = () => {
     history.push(`/users/${id}`);
   };

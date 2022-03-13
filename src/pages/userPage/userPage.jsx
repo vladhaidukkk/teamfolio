@@ -70,28 +70,25 @@ const UserPage = () => {
     const skills = transfromSkills(skill);
     const social = { githubUrl, twitterUrl, facebookUrl, linkedinUrl };
     return (
-      <>
-        <SimpleContainer>
+      <SimpleContainer>
+        {accData.status === UserStatusConstants.TeamMember &&
+          account.status === UserStatusConstants.Candidate && (
+            <Button onClick={handleAddMember}>Add this user our team</Button>
+          )}
 
-          {accData.status === UserStatusConstants.TeamMember &&
-            account.status === UserStatusConstants.Candidate && (
-              <Button onClick={handleAddMember}>Add this user our team</Button>
-            )}
-
-          {account.id === accData.id && <Options handleClick={redirectToEdit} />}
-          <AboutMe
-            name={firstName + ' ' + lastName}
-            avatar={avatarUrl}
-            desc={description}
-            role={roles}
-            languages={languages}
-          />
-          <PersonalInfo name={firstName + ' ' + lastName} email={email} years={yearsOld} />
-          <Skills skills={skills} />
-          <Experience experience={experience} />
-          <Social social={social} />
-        </SimpleContainer>
-      </>
+        {account.id === accData.id && <Options handleClick={redirectToEdit} />}
+        <AboutMe
+          name={firstName + ' ' + lastName}
+          avatar={avatarUrl}
+          desc={description}
+          role={roles}
+          languages={languages}
+        />
+        <PersonalInfo name={firstName + ' ' + lastName} email={email} years={yearsOld} />
+        <Skills skills={skills} />
+        <Experience experience={experience} />
+        <Social social={social} />
+      </SimpleContainer>
     );
   } else {
     return <h1>User Not Found</h1>;

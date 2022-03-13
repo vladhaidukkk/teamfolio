@@ -7,13 +7,17 @@ export default function SimpleContainer({ children }) {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Container maxWidth="sm">
+      <Container>
         <Box
           sx={{
             padding: '20px',
             bgcolor: '#fff',
             height: 'auto',
-            boxShadow: '0 5px 10px rgb(0 9 128 / 4%), 0 7px 18px rgb(0 9 128 / 5%)',
+            boxShadow: 3,
+            borderRadius: 2,
+            my: 5,
+            width: '100ch',
+            mx: 'auto',
           }}
         >
           {' '}

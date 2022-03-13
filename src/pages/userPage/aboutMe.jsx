@@ -8,9 +8,9 @@ const AboutMe = ({ name, avatar, desc, role, languages }) => {
   return (
     <>
       <ComplexGrid name={name} avatar={avatar} desc={desc}>
-        <AutoGridNoWrap message="About Me"></AutoGridNoWrap>
+        <AutoGridNoWrap message="About Me" />
         {languages.map((val) => (
-          <TextRating key={val.label} options={val}></TextRating>
+          <TextRating key={val.label} options={val} />
         ))}
       </ComplexGrid>{' '}
       <Typography sx={{ justifyContent: 'center', display: 'flex' }} variant="span">
