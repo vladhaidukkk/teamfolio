@@ -11,20 +11,25 @@ import PropTypes from 'prop-types';
 import { SubmitButton } from '../../common/form';
 
 const IntroUserCard = ({ userData }) => {
-  const { firstName, lastName, avatarUrl } = userData;
+  // const { firstName, lastName, avatarUrl } = userData;
 
   return (
     <Card sx={{ maxWidth: 345 }}>
-      у
       <CardHeader
-        avatar={<Avatar sx={{ width: 56, height: 56 }} src={avatarUrl} aria-label="memberCard" />}
+        avatar={
+          <Avatar
+            sx={{ width: 56, height: 56 }}
+            // src={avatarUrl}
+            aria-label="memberCard"
+          />
+        }
         action={
           <IconButton aria-label="add to favorites">
             {/* <Bookmark status={userData.bookmark} onClick={() => onToggleBookMark(userData._id)} /> */}
             <Bookmark />
           </IconButton>
         }
-        title={firstName + ' ' + lastName}
+        // title={firstName + ' ' + lastName}
         // subheader={profession}
       />
       <CardContent>
