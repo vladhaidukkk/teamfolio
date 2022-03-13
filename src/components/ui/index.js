@@ -1,4 +1,5 @@
 import LoginForm from './loginForm/loginForm';
+import Badges from './badges/badges';
 import RegistrationForm from './registrationForm/registrationForm';
 import NavMenu from './navMenu/navMenu';
 import AccountMenu from './accoutMenu/accountMenu';
@@ -14,4 +15,5 @@ export {
   NavBar,
   HeaderAppBar,
   ProjectsCarousel,
+  Badges,
 };

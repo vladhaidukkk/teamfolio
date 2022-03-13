@@ -12,11 +12,14 @@ import PropTypes from 'prop-types';
 import { history } from '../../../utils/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAccountData, toggleBookmark } from '../../../store/users';
+import { Badges } from '..';
 
 const IntroUserCard = ({ user }) => {
   const { id, firstName, lastName, avatarUrl, shortIntroduction } = user;
   const currentUser = useSelector(getAccountData());
   const dispatch = useDispatch();
+
+  const { roles } = currentUser;
 
   const isBookmarked = currentUser?.favourites?.includes(id);
 
@@ -39,11 +42,9 @@ const IntroUserCard = ({ user }) => {
             </IconButton>
           }
           title={firstName + ' ' + lastName}
-          // subheader={roles.map((role) => (
-          //   <Chip key={Math.random()} label={role.label} color={role.color} />
-          // ))}
         />
         <CardContent sx={{ minHeight: 150 }}>
+          <Badges roles={roles} />
           <Typography variant="body2" color="text.secondary">
             {shortIntroduction}
           </Typography>
