@@ -1,12 +1,11 @@
 import React from 'react';
-import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import { Grid } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 
 const Intro = () => {
   return (
-    <Container maxWidth="false">
-      <Typography variant="h1" style={{ textAlign: 'center', padding: '7px 7px 7px 0' }}>
+    <Box py={5}>
+      <Typography variant="h1" style={{ textAlign: 'center' }}>
         Intro
       </Typography>
 
@@ -18,9 +17,8 @@ const Intro = () => {
               '\n'
             }
             style={{
-              width: 250,
-              height: 155,
-              display: 'inline-block',
+              height: 200,
+              display: 'block',
               verticalAlign: 'top',
               float: 'left',
               margin: '2px 2px 2px 0',
@@ -47,7 +45,7 @@ const Intro = () => {
           </Typography>
         </Grid>
       </Grid>
-    </Container>
+    </Box>
   );
 };
 

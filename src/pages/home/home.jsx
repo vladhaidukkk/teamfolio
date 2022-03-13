@@ -7,7 +7,6 @@ const Home = () => {
   return (
     <>
       <Container>
-        <Divider />
         <Intro />
         <Divider />
         <ProjectsCarousel />
