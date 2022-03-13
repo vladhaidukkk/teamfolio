@@ -92,8 +92,8 @@ const HeaderAppBar = ({ pages, menu }) => {
                 <Tooltip title="Open menu">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar
-                      alt={currentUser.firstName + ' ' + currentUser.secondName}
-                      src={currentUser.avatarUrl}
+                      alt={currentUser?.firstName + ' ' + currentUser?.secondName}
+                      src={currentUser?.avatarUrl}
                     />
                   </IconButton>
                 </Tooltip>

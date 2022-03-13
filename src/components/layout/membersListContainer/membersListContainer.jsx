@@ -1,33 +1,37 @@
-import * as React from 'react';
-import { useState } from 'react';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
+import React, { useState } from 'react';
 import IntroUserCard from '../../ui/cards/introUserCard';
+import { Box, Grid, Pagination } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { getTeamMembers } from '../../../store/users';
+import { paginate } from '../../../utils/helpers';
 
 const MembersListContainer = () => {
-  const [users, setUsers] = useState();
-  // eslint-disable-next-line no-unused-vars
-  const [user, setUser] = useState();
+  const PAGE_SIZE = 4;
+  const users = useSelector(getTeamMembers());
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageQty = Math.ceil(users.length / PAGE_SIZE);
 
-  const handleToggleBookMark = (id) => {
-    setUsers(
-      users.map((user) => {
-        if (user._id === id) {
-          return {
-            ...user,
-            bookmark: !user.bookmark,
-          };
-        }
-        return user;
-      })
-    );
+  const handlePageChange = (_, num) => {
+    setCurrentPage(num);
   };
+
+  const usersCrop = paginate(users, currentPage, PAGE_SIZE);
+
   return (
-    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      <ListItem alignItems="flex-start">
-        <IntroUserCard userData={user} onToggleBookMark={handleToggleBookMark} />
-      </ListItem>
-    </List>
+    <>
+      <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}>
+        {usersCrop.map((_, index) => (
+          <Grid item xs={12} sm={4} md={3} lg={3} key={index} style={{ margin: '0 auto' }}>
+            <IntroUserCard />
+          </Grid>
+        ))}
+      </Grid>
+      <Box display="flex" justifyContent="center" alignItems="center" minHeight="5rem">
+        {pageQty > 1 && (
+          <Pagination count={pageQty} page={currentPage} onChange={handlePageChange} />
+        )}
+      </Box>
+    </>
   );
 };
 
