@@ -4,6 +4,7 @@ import { UniversalBreadcrumbs } from '../../components/common';
 import FormBox from '../../components/common/formBox';
 import Form, {
   MultiSelectField,
+  SliderField,
   SubmitButton,
   TextareaField,
   TextField,
@@ -32,7 +33,6 @@ const EditResume = () => {
     if (isGuest(accountData)) {
       status = UserStatusConstants.Candidate;
     }
-    console.log(data, status);
     dispatch(updateUser(accountId, { ...data, status }, '/resume'));
   };
 
@@ -151,6 +151,30 @@ const EditResume = () => {
               rules={{
                 required: 'You have to select min 1 language',
               }}
+            />
+            <Controller
+              name="hardSkillsLevel"
+              control={control}
+              defaultValue={isGuest(accountData) ? 0 : accountData.hardSkillsLevel}
+              render={({ field: { onChange, value }, fieldState: { error } }) => (
+                <SliderField onChange={onChange} value={value} label="Level of Hard Skills" />
+              )}
+            />
+            <Controller
+              name="softSkillsLevel"
+              control={control}
+              defaultValue={isGuest(accountData) ? 0 : accountData.softSkillsLevel}
+              render={({ field: { onChange, value }, fieldState: { error } }) => (
+                <SliderField onChange={onChange} value={value} label="Level of Soft Skills" />
+              )}
+            />
+            <Controller
+              name="sportSkillsLevel"
+              control={control}
+              defaultValue={isGuest(accountData) ? 0 : accountData.sportSkillsLevel}
+              render={({ field: { onChange, value }, fieldState: { error } }) => (
+                <SliderField onChange={onChange} value={value} label="Level of Sport Skills" />
+              )}
             />
             <Controller
               name="githubUrl"

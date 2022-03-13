@@ -2,11 +2,7 @@ import React from 'react';
 import { RegistrationForm } from '../../components/ui';
 
 const Registration = () => {
-  return (
-    <>
-      <RegistrationForm />
-    </>
-  );
+  return <RegistrationForm />;
 };
 
 export default Registration;
