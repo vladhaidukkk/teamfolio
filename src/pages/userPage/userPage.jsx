@@ -17,7 +17,7 @@ const UserPage = () => {
   const history = useHistory();
   const account = useSelector(getUserById(userId));
   const accData = useSelector(getAccountData());
-
+  console.log(accData);
   const redirectToEdit = () => {
     history.push(`/editresume`);
   };
@@ -27,8 +27,41 @@ const UserPage = () => {
   }
 
   if (account) {
-    const { firstName, lastName, email, avatarUrl, description, roles } = account;
+    const {
+      firstName,
+      lastName,
+      email,
+      avatarUrl,
+      description,
+      roles,
+      githubUrl,
+      twitterUrl,
+      facebookUrl,
+      linkedinUrl,
+      experience,
+      languages,
+      hardSkillsLevel,
+      softSkillsLevel,
+      sportSkillsLevel,
+    } = account;
     const yearsOld = calculateAge(account.dateOfBirth);
+    const transfromSkills = (skills) => {
+      const array = [];
+      Object.keys(skills).map((skill) => {
+        const index = skill.indexOf('Skills');
+        return array.push({
+          label: titleCase(skill.slice(0, index)) + ' skill',
+          value: skills[skill] * 10,
+        });
+      });
+      return array;
+    };
+    function titleCase(string) {
+      return string[0].toUpperCase() + string.slice(1).toLowerCase();
+    }
+    const skill = { hardSkillsLevel, softSkillsLevel, sportSkillsLevel };
+    const skills = transfromSkills(skill);
+    const social = { githubUrl, twitterUrl, facebookUrl, linkedinUrl };
     return (
       <>
         <SimpleContainer>
@@ -38,11 +71,12 @@ const UserPage = () => {
             avatar={avatarUrl}
             desc={description}
             role={roles}
+            languages={languages}
           />
           <PersonalInfo name={firstName + ' ' + lastName} email={email} years={yearsOld} />
-          <Skills />
-          <Experience />
-          <Social />
+          <Skills skills={skills} />
+          <Experience experience={experience} />
+          <Social social={social} />
         </SimpleContainer>
       </>
     );
