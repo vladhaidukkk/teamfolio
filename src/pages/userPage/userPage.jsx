@@ -17,12 +17,15 @@ const UserPage = () => {
   const history = useHistory();
   const account = useSelector(getUserById(userId));
   const accData = useSelector(getAccountData());
+
   const redirectToEdit = () => {
-    history.push(`/users/${userId}/editresume`);
+    history.push(`/editresume`);
   };
+
   if (accData.status === 'guest' && account.id !== accData.id) {
-    history.push('/editresume');
+    history.push('/');
   }
+
   if (account) {
     const { firstName, lastName, email, avatarUrl } = account;
     const yearsOld = calculateAge(account.dateOfBirth);
@@ -30,16 +33,12 @@ const UserPage = () => {
       <>
         <SimpleContainer>
           {' '}
-          {account.id === accData.id && <Options handleClick={redirectToEdit}></Options>}
+          {account.id === accData.id && <Options handleClick={redirectToEdit} />}
           <AboutMe name={firstName + ' ' + lastName} avatar={avatarUrl} />
-          <PersonalInfo
-            name={firstName + ' ' + lastName}
-            email={email}
-            years={yearsOld}
-          ></PersonalInfo>
-          <Skills></Skills>
-          <Experience></Experience>
-          <Social></Social>
+          <PersonalInfo name={firstName + ' ' + lastName} email={email} years={yearsOld} />
+          <Skills />
+          <Experience />
+          <Social />
         </SimpleContainer>
       </>
     );
