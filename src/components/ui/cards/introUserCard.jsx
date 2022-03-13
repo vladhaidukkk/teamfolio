@@ -18,7 +18,7 @@ const IntroUserCard = ({ user }) => {
   const currentUser = useSelector(getAccountData());
   const dispatch = useDispatch();
 
-  const isBookmarked = currentUser.favourites?.includes(id);
+  const isBookmarked = currentUser?.favourites?.includes(id);
 
   const redirectToUserPage = () => {
     history.push(`/users/${id}`);
