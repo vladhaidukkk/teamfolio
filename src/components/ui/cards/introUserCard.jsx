@@ -13,10 +13,12 @@ import { history } from '../../../utils/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAccountData, toggleBookmark } from '../../../store/users';
 import { Badges } from '..';
+import { getLoggedInStatus } from '../../../store/auth';
 
 const IntroUserCard = ({ user }) => {
   const { id, firstName, lastName, avatarUrl, shortIntroduction, roles } = user;
   const userAuth = useSelector(getAccountData());
+  const isLoggedIn = useSelector(getLoggedInStatus());
   const dispatch = useDispatch();
 
   const isBookmarked = userAuth?.favourites?.includes(id);
@@ -36,7 +38,7 @@ const IntroUserCard = ({ user }) => {
           avatar={<Avatar sx={{ width: 56, height: 56 }} src={avatarUrl} aria-label="memberCard" />}
           action={
             <IconButton aria-label="add to favorites" onClick={handleToggleBookmark}>
-              <Bookmark status={isBookmarked} />
+              {isLoggedIn && <Bookmark status={isBookmarked} />}
             </IconButton>
           }
           title={firstName + ' ' + lastName}

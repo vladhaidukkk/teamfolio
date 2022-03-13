@@ -6,8 +6,12 @@ import PropTypes from 'prop-types';
 import Favorite from './favorite';
 import { Box } from '@mui/system';
 import { Avatar } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { getLoggedInStatus } from '../../store/auth';
 
 export default function ComplexGrid({ children, name, avatar, desc }) {
+  const isLoggedIn = useSelector(getLoggedInStatus());
+
   return (
     <Paper
       sx={{
@@ -38,7 +42,7 @@ export default function ComplexGrid({ children, name, avatar, desc }) {
             }}
           >
             <Avatar alt={name} src={avatar} sx={{ width: 150, height: 150 }} />
-            <Favorite />
+            {isLoggedIn && <Favorite />}
           </Box>
         </Grid>
         <Grid item xs={12} sm container>
