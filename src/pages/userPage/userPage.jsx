@@ -14,13 +14,12 @@ const UserPage = () => {
   const { userId } = useParams();
   const account = useSelector(getUserById(userId));
   if (account) {
-    const { firstName, lastName, email } = account;
+    const { firstName, lastName, email, avatarUrl } = account;
     const yearsOld = calculateAge(account.dateOfBirth);
-
     return (
       <>
         <SimpleContainer>
-          <AboutMe name={firstName + ' ' + lastName} />
+          <AboutMe name={firstName + ' ' + lastName} avatar={avatarUrl} />
           <PersonalInfo
             name={firstName + ' ' + lastName}
             email={email}
