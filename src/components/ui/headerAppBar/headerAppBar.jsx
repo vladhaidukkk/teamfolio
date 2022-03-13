@@ -27,7 +27,7 @@ const HeaderAppBar = ({ pages, menu }) => {
   const isLoggedIn = useSelector(getLoggedInStatus());
   const currentUser = useSelector(getAccountData());
   const currentUserStatus = currentUser?.status;
-
+  console.log(isLoggedIn);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -42,7 +42,6 @@ const HeaderAppBar = ({ pages, menu }) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
   return (
     <AppBar sx={{ marginBottom: '50px' }} position="static">
       <Container maxWidth="xl">
