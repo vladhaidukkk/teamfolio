@@ -20,7 +20,7 @@ const TestimonialItem = ({ data }) => {
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
         <Typography variant="h5">Message</Typography>
-        <Typography nowrap={false}>{data.message}</Typography>
+        <Typography>{data.message}</Typography>
       </Box>
     </Box>
   );
