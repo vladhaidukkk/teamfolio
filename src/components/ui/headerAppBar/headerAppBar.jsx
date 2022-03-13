@@ -15,9 +15,10 @@ import { Logo } from '../../common';
 import PropTypes from 'prop-types';
 import { AccountMenu, NavMenu, NavBar } from '..';
 import { useSelector } from 'react-redux';
-import { getAccountData, getLoggedInStatus } from '../../../store/auth';
+import { getLoggedInStatus } from '../../../store/auth';
 import { Link } from 'react-router-dom';
 import { UserStatusConstants } from '../../../utils/constants';
+import { getAccountData } from '../../../store/users';
 
 const HeaderAppBar = ({ pages, menu }) => {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -43,7 +44,7 @@ const HeaderAppBar = ({ pages, menu }) => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ mb: 5 }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -84,14 +85,16 @@ const HeaderAppBar = ({ pages, menu }) => {
             {isLoggedIn ? (
               <>
                 {currentUserStatus === UserStatusConstants.Guest && (
-                  // TODO: replace with custom button
-                  <Button component={Link} to={'/editresume'} color="inherit">
-                    Join our team!
+                  <Button component={Link} to={'/editresume'} color="inherit" sx={{ mr: 2 }}>
+                    Join our team
                   </Button>
                 )}
                 <Tooltip title="Open menu">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                    <Avatar
+                      alt={currentUser?.firstName + ' ' + currentUser?.lastName}
+                      src={currentUser?.avatarUrl}
+                    />
                   </IconButton>
                 </Tooltip>
                 <AccountMenu

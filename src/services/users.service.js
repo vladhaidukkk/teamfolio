@@ -7,20 +7,20 @@ const createUser = async (id, payload) => {
   return data;
 };
 
-const getUser = async (id) => {
-  const { data } = await httpService.get(usersEndpoint + id);
-  return data;
-};
-
 const getUsers = async () => {
   const { data } = await httpService.get(usersEndpoint);
   return data;
 };
 
+const patchUser = async (id, payload) => {
+  const { data } = await httpService.patch(usersEndpoint + id, payload);
+  return data;
+};
+
 const usersService = {
   createUser,
-  getUser,
   getUsers,
+  patchUser,
 };
 
 export default usersService;

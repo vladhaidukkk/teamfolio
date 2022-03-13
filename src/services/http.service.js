@@ -5,17 +5,18 @@ import authService from './auth.service';
 import { toast } from 'material-react-toastify';
 
 const http = axios.create({
-  baseURL: configKeys.apiEndpoint,
+  baseURL: configKeys.databaseURL + '/',
 });
 
 http.interceptors.request.use(
-  (config) => {
+  async (config) => {
     const refreshToken = localStorageService.getRefreshToken();
     const expiresDate = localStorageService.getTokenExpiresDate();
 
     if (refreshToken && Date.now() > expiresDate) {
-      const authData = authService.refreshToken();
+      const authData = await authService.refreshToken();
       localStorageService.setTokens({
+        localId: authData.user_id,
         idToken: authData.id_token,
         refreshToken: authData.refresh_token,
         expiresIn: authData.expires_in,
@@ -35,7 +36,10 @@ http.interceptors.request.use(
 
 http.interceptors.response.use(
   (res) => {
-    res.data = Object.values(res.data)[0].id ? Object.values(res.data) : res.data;
+    if (res.data) {
+      res.data = Object.values(res.data)[0].id ? Object.values(res.data) : res.data;
+    }
+
     return res;
   },
   (error) => {

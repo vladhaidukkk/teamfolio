@@ -1,3 +1,9 @@
 {
-  "apiEndpoint": "https://teamfolio-default-rtdb.europe-west1.firebasedatabase.app/"
+  "authDomain": "teamfolio.firebaseapp.com",
+  "databaseURL": "https://teamfolio-default-rtdb.europe-west1.firebasedatabase.app",
+  "projectId": "teamfolio",
+  "storageBucket": "teamfolio.appspot.com",
+  "storageBucket": "teamfolio.appspot.com",
+  "messagingSenderId": "285617154561",
+  "appId": "1:285617154561:web:9959ed947ec05ee697ae00"
 }

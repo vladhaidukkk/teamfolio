@@ -2,15 +2,16 @@ import { Button } from '@mui/material';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import { getAccountData } from '../../store/auth';
+import { getAccountId } from '../../store/auth';
 
 const User = () => {
   const { userId } = useParams();
-  const { id } = useSelector(getAccountData());
+  const accountId = useSelector(getAccountId());
+
   return (
     <>
       <div>User page</div>
-      {userId === id && (
+      {userId === accountId && (
         <Button component={Link} to={'/editresume'}>
           Edit resume
         </Button>

@@ -5,99 +5,61 @@ import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import Avatar from '@mui/material/Avatar';
+import Bookmark from '../../common/bookmark';
+import { Button } from '@mui/material';
+import PropTypes from 'prop-types';
+import { history } from '../../../utils/core';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAccountData, toggleBookmark } from '../../../store/users';
+import { Badges } from '..';
 
-// const ExpandMore = styled((props) => {
-//   const { expand, ...other } = props;
-//   return <IconButton {...other} />;
-// })(({ theme, expand }) => ({
-//   transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-//   marginLeft: 'auto',
-//   transition: theme.transitions.create('transform', {
-//     duration: theme.transitions.duration.shortest,
-//   }),
-// }));
+const IntroUserCard = ({ user }) => {
+  const { id, firstName, lastName, avatarUrl, shortIntroduction, roles } = user;
+  const userAuth = useSelector(getAccountData());
+  const dispatch = useDispatch();
 
-const IntroUserCard = () => {
-  //   const [expanded, setExpanded] = React.useState(false);
-  //
-  //   const handleExpandClick = () => {
-  //     setExpanded(!expanded);
-  //   };
+  const isBookmarked = userAuth?.favourites?.includes(id);
 
-  return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardHeader
-        avatar={
-          <Avatar
-            sx={{ width: 56, height: 56 }}
-            src={`https://avatars.dicebear.com/api/avataaars/${(Math.random() + 1)
-              .toString(36)
-              .substring(7)}.svg`}
-            aria-label="memberCard"
-          ></Avatar>
-        }
-        action={
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-        }
-        title="Member Name"
-        subheader="Senior Front-end Developer"
-      />
+  const redirectToUserPage = () => {
+    history.push(`/users/${id}`);
+  };
 
-      <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          Adaptability and Thirst for Learning. Codes, frameworks, and other tools constantly change
-          in the world of IT. Creative and Critical Thinker.
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        {/* <IconButton aria-label="add to favorites"> */}
-        {/*  <FavoriteIcon /> */}
-        {/* </IconButton> */}
-        {/* <IconButton aria-label="share"> */}
-        {/*  <ShareIcon /> */}
-        {/* </IconButton> */}
-        {/*  <ExpandMore */}
-        {/*    expand={expanded} */}
-        {/*    onClick={handleExpandClick} */}
-        {/*    aria-expanded={expanded} */}
-        {/*    aria-label="show more" */}
-        {/*  > */}
-        {/*    <ExpandMoreIcon /> */}
-        {/*  </ExpandMore> */}
-      </CardActions>
-      {/* <Collapse in={expanded} timeout="auto" unmountOnExit> */}
-      {/*  <CardContent> */}
-      {/*    <Typography paragraph>Method:</Typography> */}
-      {/*    <Typography paragraph> */}
-      {/*      Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10 */}
-      {/*      minutes. */}
-      {/*    </Typography> */}
-      {/*    <Typography paragraph> */}
-      {/*      Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high */}
-      {/*      heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly */}
-      {/*      browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken */}
-      {/*      and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and */}
-      {/*      pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add */}
-      {/*      saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil. */}
-      {/*    </Typography> */}
-      {/*    <Typography paragraph> */}
-      {/*      Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook */}
-      {/*      without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to */}
-      {/*      medium-low, add reserved shrimp and mussels, tucking them down into the rice, and cook */}
-      {/*      again without stirring, until mussels have opened and rice is just tender, 5 to 7 */}
-      {/*      minutes more. (Discard any mussels that don’t open.) */}
-      {/*    </Typography> */}
-      {/*    <Typography> */}
-      {/*      Set aside off of the heat to let rest for 10 minutes, and then serve. */}
-      {/*    </Typography> */}
-      {/*  </CardContent> */}
-      {/* </Collapse> */}
-    </Card>
-  );
+  const handleToggleBookmark = () => {
+    dispatch(toggleBookmark(userAuth.id, id));
+  };
+
+  if (user) {
+    return (
+      <Card>
+        <CardHeader
+          avatar={<Avatar sx={{ width: 56, height: 56 }} src={avatarUrl} aria-label="memberCard" />}
+          action={
+            <IconButton aria-label="add to favorites" onClick={handleToggleBookmark}>
+              <Bookmark status={isBookmarked} />
+            </IconButton>
+          }
+          title={firstName + ' ' + lastName}
+        />
+        <CardContent sx={{ minHeight: 150 }}>
+          <Badges roles={roles} />
+          <Typography variant="body2" color="text.secondary">
+            {shortIntroduction}
+          </Typography>
+        </CardContent>
+        <CardActions disableSpacing>
+          <Button variant="contained" fullWidth={true} onClick={redirectToUserPage}>
+            Additional info
+          </Button>
+        </CardActions>
+      </Card>
+    );
+  } else {
+    return <h1>User Not Found</h1>;
+  }
 };
 
+IntroUserCard.propTypes = {
+  user: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+};
 export default IntroUserCard;

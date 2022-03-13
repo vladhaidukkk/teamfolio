@@ -1,17 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { getAccountData } from '../../store/auth';
-import { history } from '../../utils/core';
+import { getAccountId } from '../../store/auth';
+import { Redirect } from 'react-router-dom';
 
 const Resume = () => {
-  const { id } = useSelector(getAccountData());
-  history.push(`/users/${id}`);
+  const accountId = useSelector(getAccountId());
 
-  return (
-    <>
-      <div>Loading resume page...</div>
-    </>
-  );
+  return <Redirect to={`/users/${accountId}`} />;
 };
 
 export default Resume;

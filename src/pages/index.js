@@ -8,7 +8,7 @@ import Team from './team/team';
 import User from './user/user';
 import Resume from './resume/resume';
 import EditResume from './editResume/editResume';
-
+import UserPage from './userPage/userPage';
 export {
   Home,
   Login,
@@ -20,4 +20,5 @@ export {
   Resume,
   User,
   EditResume,
+  UserPage,
 };
