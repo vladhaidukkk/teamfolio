@@ -1,19 +1,19 @@
 const SkillsConstants = {
   Entities: [
     {
-      label: 'FrontEnd',
+      label: 'JavaScript',
       color: '#ff9800',
     },
     {
-      label: 'BackEnd',
+      label: 'NodeJS',
       color: '#4caf50',
     },
     {
-      label: 'DevOps',
+      label: 'Firebase',
       color: '#ba68c8',
     },
     {
-      label: 'Designer',
+      label: 'MongoDB',
       color: '#03a9f4',
     },
   ],

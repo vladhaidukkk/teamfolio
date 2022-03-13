@@ -3,14 +3,13 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import SprintImage from '../../../assets/Sprint.jpg';
-import { TableCell } from '@mui/material';
 
 const Intro = () => {
   return (
     <Container maxWidth="false">
       <Box sx={{ textAlign: 'center', fontWeight: 500 }}>
         <Typography variant="h1">Intro</Typography>
-        <TableCell align="left">
+        <Box>
           <img
             src={SprintImage}
             style={{
@@ -22,9 +21,9 @@ const Intro = () => {
               margin: '7px 7px 7px 0',
             }}
           />
-        </TableCell>
+        </Box>
 
-        <TableCell align="right">
+        <Box>
           <Typography
             style={{
               cursor: 'pointer',
@@ -38,7 +37,7 @@ const Intro = () => {
             Welcome to the personal page of Dream-team. We are a community of developers who will be
             grateful to invite professionals to our team.
           </Typography>
-        </TableCell>
+        </Box>
         {/* <img src={SprintImage} alt="dream-team" width="250px" float="left" /> */}
 
         <Typography paragraph>
