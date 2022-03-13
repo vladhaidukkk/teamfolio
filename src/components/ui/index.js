@@ -6,6 +6,8 @@ import AccountMenu from './accoutMenu/accountMenu';
 import NavBar from './navBar/navBar';
 import HeaderAppBar from './headerAppBar/headerAppBar';
 import ProjectsCarousel from './projectsCarousel/projectsCarousel';
+import TestimonialItem from './testimonialItem/testimonialItem';
+import TestimonialForm from './testimonialForm/testimonialForm';
 
 export {
   LoginForm,
@@ -16,4 +18,6 @@ export {
   HeaderAppBar,
   ProjectsCarousel,
   Badges,
+  TestimonialItem,
+  TestimonialForm,
 };

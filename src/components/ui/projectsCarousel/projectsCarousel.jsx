@@ -7,7 +7,7 @@ import ProjectSlide from '../projectSlide/projectSlide';
 const ProjectsCarousel = () => {
   return (
     <Box sx={{ width: '80ch', mx: 'auto', my: 5 }}>
-      <Carousel sx={{ width: '100%' }}>
+      <Carousel sx={{ width: '100%', p: 1, px: 9, ml: -9 }}>
         {ProjectConstants.Entities.map((project) => {
           return <ProjectSlide key={project.name} img={project.img} name={project.name} />;
         })}
