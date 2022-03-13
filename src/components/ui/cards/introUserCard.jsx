@@ -10,7 +10,7 @@ import Bookmark from '../../common/bookmark';
 import { Button } from '@mui/material';
 import PropTypes from 'prop-types';
 import { history } from '../../../utils/core';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getAccountData, toggleBookmark } from '../../../store/users';
 
 const IntroUserCard = ({ user }) => {
@@ -39,6 +39,9 @@ const IntroUserCard = ({ user }) => {
             </IconButton>
           }
           title={firstName + ' ' + lastName}
+          // subheader={roles.map((role) => (
+          //   <Chip key={Math.random()} label={role.label} color={role.color} />
+          // ))}
         />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
