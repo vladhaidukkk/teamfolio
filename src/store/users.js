@@ -1,6 +1,8 @@
 import { createAction, createSlice } from '@reduxjs/toolkit';
 import { usersService } from '../services';
 import { UserStatusConstants } from '../utils/constants';
+import { toast } from 'material-react-toastify';
+import { history } from '../utils/core';
 
 const usersSlice = createSlice({
   name: 'users',
@@ -70,11 +72,13 @@ export const createUser = (id, payload) => async (dispatch) => {
   }
 };
 
-export const updateUser = (id, payload) => async (dispatch) => {
+export const updateUser = (id, payload, redirect) => async (dispatch) => {
   dispatch(updateRequested());
   try {
     const data = await usersService.patchUser(id, payload);
     dispatch(updated({ id, data }));
+    toast.success('Your account was updated:)');
+    if (redirect) history.push(redirect);
   } catch (error) {
     const { message } = error;
     dispatch(crudFailed(message));

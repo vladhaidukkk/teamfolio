@@ -9,13 +9,14 @@ const http = axios.create({
 });
 
 http.interceptors.request.use(
-  (config) => {
+  async (config) => {
     const refreshToken = localStorageService.getRefreshToken();
     const expiresDate = localStorageService.getTokenExpiresDate();
 
     if (refreshToken && Date.now() > expiresDate) {
-      const authData = authService.refreshToken();
+      const authData = await authService.refreshToken();
       localStorageService.setTokens({
+        localId: authData.user_id,
         idToken: authData.id_token,
         refreshToken: authData.refresh_token,
         expiresIn: authData.expires_in,
