@@ -40,7 +40,7 @@ const IntroUserCard = ({ user }) => {
           }
           title={firstName + ' ' + lastName}
         />
-        <CardContent>
+        <CardContent sx={{ minHeight: 150 }}>
           <Typography variant="body2" color="text.secondary">
             {shortIntroduction}
           </Typography>
