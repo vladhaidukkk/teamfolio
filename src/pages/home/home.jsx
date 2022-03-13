@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Divider } from '@mui/material';
 import { Footer, Intro, MembersList } from '../../components/layout';
+import { ProjectsCarousel } from '../../components/ui';
 
 const Home = () => {
   return (
@@ -8,6 +9,8 @@ const Home = () => {
       <Container>
         <Divider />
         <Intro />
+        <Divider />
+        <ProjectsCarousel />
         <Divider />
         <MembersList pageSize={4} />
         <Divider />

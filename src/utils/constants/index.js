@@ -3,6 +3,7 @@ import NavBarConstants from './navBar.constants';
 import RolesConstants from './roles.constants';
 import SkillsConstants from './skills.constants';
 import LanguagesConstants from './languages.constants';
+import ProjectConstants from './project.constants';
 
 export {
   UserStatusConstants,
@@ -10,4 +11,5 @@ export {
   RolesConstants,
   SkillsConstants,
   LanguagesConstants,
+  ProjectConstants,
 };
