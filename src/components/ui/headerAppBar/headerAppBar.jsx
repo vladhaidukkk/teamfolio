@@ -44,7 +44,7 @@ const HeaderAppBar = ({ pages, menu }) => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar sx={{ marginBottom: '50px' }} position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -93,8 +93,8 @@ const HeaderAppBar = ({ pages, menu }) => {
                 <Tooltip title="Open menu">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar
-                      alt={currentUser.firstName + ' ' + currentUser.secondName}
-                      src={currentUser.avatarUrl}
+                      alt={currentUser?.firstName + ' ' + currentUser?.secondName}
+                      src={currentUser?.avatarUrl}
                     />
                   </IconButton>
                 </Tooltip>

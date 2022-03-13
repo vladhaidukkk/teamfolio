@@ -3,9 +3,9 @@ import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import ButtonBase from '@mui/material/ButtonBase';
 import PropTypes from 'prop-types';
 import Favorite from './favorite';
+import { Box } from '@mui/system';
 const Img = styled('img')({
   margin: 'auto',
   display: 'block',
@@ -13,7 +13,7 @@ const Img = styled('img')({
   maxHeight: '100%',
 });
 
-export default function ComplexGrid({ children, name }) {
+export default function ComplexGrid({ children, name, avatar }) {
   return (
     <Paper
       sx={{
@@ -36,19 +36,27 @@ export default function ComplexGrid({ children, name }) {
           }}
           item
         >
-          <ButtonBase
+          <Box
             sx={{
-              width: 128,
-              height: 128,
+              margin: '0 auto',
+              width: 150,
+              justifyContent: 'center',
+              height: 200,
+              marginBottom: 0,
             }}
           >
             <Img
+              sx={{
+                display: 'block',
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                borderRadius: '10px',
+              }}
               alt="complex"
-              src={`https://avatars.dicebear.com/api/avataaars/${(Math.random() + 1)
-                .toString(36)
-                .substring(7)}.svg`}
+              src={avatar}
             />
-          </ButtonBase>{' '}
+          </Box>
           <Favorite></Favorite>
         </Grid>
         <Grid item xs={12} sm container>
@@ -74,5 +82,6 @@ export default function ComplexGrid({ children, name }) {
 }
 ComplexGrid.propTypes = {
   name: PropTypes.string,
+  avatar: PropTypes.string,
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
 };

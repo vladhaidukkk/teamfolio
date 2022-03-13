@@ -6,15 +6,12 @@ import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
-import { Button } from '@mui/material';
 import Bookmark from '../../common/bookmark';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
-import { getUserById } from '../../../store/users';
+import { SubmitButton } from '../../common/form';
 
-const IntroUserCard = ({ userId, onToggleBookMark }) => {
-  // eslint-disable-next-line no-unused-vars
-  const userData = useSelector(getUserById(userId));
+const IntroUserCard = ({ userData }) => {
+  // const { firstName, lastName, avatarUrl } = userData;
 
   return (
     <Card>
@@ -22,9 +19,7 @@ const IntroUserCard = ({ userId, onToggleBookMark }) => {
         avatar={
           <Avatar
             sx={{ width: 56, height: 56 }}
-            src={`https://avatars.dicebear.com/api/avataaars/${(Math.random() + 1)
-              .toString(36)
-              .substring(7)}.svg`}
+            // src={avatarUrl}
             aria-label="memberCard"
           />
         }
@@ -34,10 +29,9 @@ const IntroUserCard = ({ userId, onToggleBookMark }) => {
             <Bookmark />
           </IconButton>
         }
-        // title={`${userData.name}+" "+${userData.surname}`}
-        // subheader={userData.profession}
+        // title={firstName + ' ' + lastName}
+        // subheader={profession}
       />
-
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           Adaptability and Thirst for Learning. Codes, frameworks, and other tools constantly change
@@ -45,16 +39,19 @@ const IntroUserCard = ({ userId, onToggleBookMark }) => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <Button variant="contained" fullWidth={true}>
+        <SubmitButton variant="contained" fullWidth={true}>
           Additional info
-        </Button>
+        </SubmitButton>
       </CardActions>
     </Card>
   );
 };
 
 IntroUserCard.propTypes = {
-  userId: PropTypes.string,
+  userData: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  avatarUrl: PropTypes.string,
   onToggleBookMark: PropTypes.func,
 };
 export default IntroUserCard;

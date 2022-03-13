@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Box } from '@mui/material';
 
 const FormBox = ({ children }) => {
-  return <Box sx={{ mx: 'auto', width: '60ch', mt: '10ch' }}>{children}</Box>;
+  return <Box sx={{ mx: 'auto', my: '10ch', maxWidth: '60ch' }}>{children}</Box>;
 };
 
 FormBox.propTypes = {

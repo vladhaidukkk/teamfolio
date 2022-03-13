@@ -1,4 +1,5 @@
 import calculateAge from './calculateAge.helper';
 import paginate from './paginate';
+import isGuest from './isGuest.helper';
 
-export { calculateAge, paginate };
+export { calculateAge, isGuest, paginate };

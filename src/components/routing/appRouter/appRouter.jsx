@@ -28,6 +28,7 @@ const AppRouter = () => {
         <PrivateRoute path="/account" exact component={Account} />
         <PrivateRoute path="/editresume" exact component={EditResume} />
         <Route path="/users/:userId" exact component={UserPage} />
+        <PrivateRoute path="/users/:userId/EditResume" exact component={EditResume} />
         <PrivateRoute path="/candidates" exact component={Candidates} />
         <Route path="/" exact component={Home} />
         <Redirect to="/" />
