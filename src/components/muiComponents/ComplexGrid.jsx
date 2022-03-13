@@ -21,7 +21,7 @@ export default function ComplexGrid({ children, name, avatar, desc }) {
       }}
     >
       {children && children[0]}
-      <Grid spacing={2}>
+      <Grid container spacing={2}>
         <Grid
           sx={{
             display: 'flex',

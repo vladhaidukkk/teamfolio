@@ -9,7 +9,6 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import PropTypes from 'prop-types';
 
 const Social = ({ social }) => {
-  console.log(social);
   return (
     <>
       <BoxSx>

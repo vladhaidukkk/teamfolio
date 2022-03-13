@@ -20,7 +20,6 @@ const UserPage = () => {
   const history = useHistory();
   const account = useSelector(getUserById(userId));
   const accData = useSelector(getAccountData());
-  console.log(accData);
   const redirectToEdit = () => {
     history.push(`/editresume`);
   };
@@ -28,10 +27,6 @@ const UserPage = () => {
   const handleAddMember = () => {
     dispatch(updateUser(userId, { status: UserStatusConstants.TeamMember }));
   };
-
-  if (accData.status === 'guest' && account.id !== accData.id) {
-    history.push('/');
-  }
 
   if (account) {
     const {
@@ -71,12 +66,12 @@ const UserPage = () => {
     const social = { githubUrl, twitterUrl, facebookUrl, linkedinUrl };
     return (
       <SimpleContainer>
-        {accData.status === UserStatusConstants.TeamMember &&
+        {accData?.status === UserStatusConstants.TeamMember &&
           account.status === UserStatusConstants.Candidate && (
             <Button onClick={handleAddMember}>Add this user our team</Button>
           )}
 
-        {account.id === accData.id && <Options handleClick={redirectToEdit} />}
+        {account.id === accData?.id && <Options handleClick={redirectToEdit} />}
         <AboutMe
           name={firstName + ' ' + lastName}
           avatar={avatarUrl}
