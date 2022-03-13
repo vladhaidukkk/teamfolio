@@ -15,20 +15,18 @@ import { getAccountData, toggleBookmark } from '../../../store/users';
 import { Badges } from '..';
 
 const IntroUserCard = ({ user }) => {
-  const { id, firstName, lastName, avatarUrl, shortIntroduction } = user;
-  const currentUser = useSelector(getAccountData());
+  const { id, firstName, lastName, avatarUrl, shortIntroduction, roles } = user;
+  const userAuth = useSelector(getAccountData());
   const dispatch = useDispatch();
 
-  const { roles } = currentUser;
-
-  const isBookmarked = currentUser?.favourites?.includes(id);
+  const isBookmarked = userAuth?.favourites?.includes(id);
 
   const redirectToUserPage = () => {
     history.push(`/users/${id}`);
   };
 
   const handleToggleBookmark = () => {
-    dispatch(toggleBookmark(currentUser.id, id));
+    dispatch(toggleBookmark(userAuth.id, id));
   };
 
   if (user) {
