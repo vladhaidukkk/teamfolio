@@ -21,7 +21,7 @@ const Testimonials = () => {
   }
 
   return (
-    <Box sx={{ maxWidth: '80ch', mx: 'auto', my: 5 }}>
+    <Box sx={{ maxWidth: '80ch', mx: 'auto', pt: 5, pb: 7 }}>
       <Typography variant="h2" textAlign="center" mb={4}>
         Testimonials
       </Typography>

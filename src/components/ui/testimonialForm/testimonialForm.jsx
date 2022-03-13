@@ -7,7 +7,7 @@ import { getAccountId, getLoggedInStatus } from '../../../store/auth';
 import { nanoid } from 'nanoid';
 
 const TestimonialForm = () => {
-  const { control, handleSubmit } = useForm();
+  const { control, handleSubmit, reset } = useForm();
   const isLoggedIn = useSelector(getLoggedInStatus());
   const accountId = useSelector(getAccountId());
   const dispatch = useDispatch();
@@ -15,6 +15,7 @@ const TestimonialForm = () => {
   const handleFormSubmit = (data) => {
     const id = nanoid();
     dispatch(createTestimonial(id, { id, ...data, creatorId: accountId }));
+    reset();
   };
 
   if (!isLoggedIn) return null;

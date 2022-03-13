@@ -1,7 +1,7 @@
-import { Menu, MenuItem, Typography } from '@mui/material';
+import { Menu, MenuItem } from '@mui/material';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import Link from '../../common/link';
 
 const AccountMenu = ({ menu, anchorElUser, handleCloseUserMenu }) => {
   return (
@@ -23,9 +23,7 @@ const AccountMenu = ({ menu, anchorElUser, handleCloseUserMenu }) => {
     >
       {menu.map((el) => (
         <MenuItem key={el.label} onClick={handleCloseUserMenu}>
-          <Typography component={Link} to={el.path} textAlign="center">
-            {el.label}
-          </Typography>
+          <Link path={el.path}>{el.label}</Link>
         </MenuItem>
       ))}
     </Menu>
