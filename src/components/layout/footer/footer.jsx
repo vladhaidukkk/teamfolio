@@ -24,17 +24,21 @@ const Footer = () => {
         label="Facebook"
         value="facebook"
         icon={
-          <Link href="https://www.facebook.com/profile.php?id=100077175214153">
+          <a
+            href="https://www.facebook.com/profile.php?id=100077175214153"
+            target="_blank"
+            rel="noreferrer"
+          >
             {' '}
             <FacebookIcon />
-          </Link>
+          </a>
         }
       />
       <BottomNavigationAction
         label="LinkedIn"
         value="linkedIn"
         icon={
-          <Link href="https://www.linkedin.com/">
+          <Link href="https://www.linkedin.com/" target="_blank">
             {' '}
             <LinkedInIcon />
           </Link>
@@ -44,7 +48,7 @@ const Footer = () => {
         label="TwitterIcon"
         value="twitterIcon"
         icon={
-          <Link to="https://twitter.com/">
+          <Link to="https://twitter.com/" target="_blank">
             {' '}
             <TwitterIcon />
           </Link>
